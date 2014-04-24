@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OnTheGo</string>
+    <string name="action_help">Help</string>
+    <string name="options_alpha">Alpha: </string>
+	<string name="options_auto_flash">Auto-Flash:</string>
+    <string name="options_light_sensing_mode">Light Sensing Mode:</string>
+	
+</resources>
