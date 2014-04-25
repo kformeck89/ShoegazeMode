@@ -185,6 +185,9 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				}
 			}
 		});
+		
+		// TODO: Retreive "Light Sensing Mode" setting and turn it on if necessary
+		
 		overlay = new FrameLayout(context);
 		overlay.setLayoutParams(new FrameLayout.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,
