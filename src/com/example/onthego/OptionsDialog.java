@@ -8,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 
 public class OptionsDialog {
 	private static OptionsDialog instance;
+	private boolean autoBrightnessWasOn;
+	private int prvBrightnessLevel;
 	private Context context;
 	private View overlay;
 	private WindowManager windowManager;
@@ -24,6 +28,7 @@ public class OptionsDialog {
 	}
 	private OptionsDialog(Context context) {
 		this.context = context;
+		retreiveBrightnessSettings();
 	}
 	
 	public void show() {
@@ -40,8 +45,30 @@ public class OptionsDialog {
 		
 		overlay = ((LayoutInflater)context.getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.overlay_options, null, false);
-		overlay.setBackground(context.getResources().getDrawable(R.drawable.options_overlay_shape));
+		overlay.setBackground(context.getResources().getDrawable(
+				R.drawable.options_overlay_shape));
 		overlay.setAlpha(1);
+		
+		final Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
+		lsmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					retreiveBrightnessSettings();
+					DeviceUtils.setAutoBrightness(context, false);
+					
+					// Start light sensing service
+					
+					
+				} else {
+					if (autoBrightnessWasOn) {
+						DeviceUtils.setAutoBrightness(context, true);
+					} else {
+						DeviceUtils.setBrightnessLevel(context, prvBrightnessLevel);
+					}
+				}
+			}	
+		});
 		
 		final SeekBar alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);
 		final float value = 0.5f; //TODO: retrieve this from settings instead
@@ -49,8 +76,8 @@ public class OptionsDialog {
 		alphaSlider.setProgress(progress);
 		alphaSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
-			public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-				sendAlphaBroadcast(String.valueOf(i + 10));
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				sendAlphaBroadcast(String.valueOf(progress + 10));
 			}
 			@Override
 			public void onStartTrackingTouch(SeekBar arg0) { }
@@ -79,5 +106,9 @@ public class OptionsDialog {
 		alphaBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 		alphaBroadcast.putExtra(ShoegazeReceiver.EXTRA_ALPHA, value);
 		context.sendBroadcast(alphaBroadcast);
+	}
+	private void retreiveBrightnessSettings() {
+		autoBrightnessWasOn = DeviceUtils.isAutoBrightnessOn(context);
+		prvBrightnessLevel = DeviceUtils.getBrightnessLevel(context);
 	}
 }

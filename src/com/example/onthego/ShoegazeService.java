@@ -32,7 +32,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private static final int NOTIFICATION_STARTED = 0;
 	private static final float ALPHA_DEFAULT = 0.5f;
 	private static final float ALPHA_MAX = 0.9f;
-	private static final float ALPHA_MIN = 0.2f;
+	private static final float ALPHA_MIN = 0.1f;
 	private Context context;
 	private FrameLayout overlay;
 	private Camera camera;
