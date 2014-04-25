@@ -9,16 +9,23 @@
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_gravity="center_vertical|right"
-        android:layout_margin="@dimen/options_view_margin"
+        android:layout_marginLeft="@dimen/options_view_lr_margin"
+        android:layout_marginRight="@dimen/options_view_lr_margin"
+        android:layout_marginTop="@dimen/options_view_tb_margin"
+        android:layout_marginBottom="@dimen/options_view_tb_margin"
         android:layout_row="0"
-        android:text="@string/options_alpha" />
+        android:text="@string/options_alpha"
+        android:textColor="@color/options_font_color"
+        android:fontFamily="@string/options_font_family" />
     <SeekBar
         android:id="@+id/sliderAlpha"
         android:layout_width="@dimen/options_slider_width"
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_gravity="fill_horizontal|center_vertical"
-        android:layout_margin="@dimen/options_view_margin"
+        android:layout_marginRight="@dimen/options_view_lr_margin"
+        android:layout_marginTop="@dimen/options_view_tb_margin"
+        android:layout_marginBottom="@dimen/options_view_tb_margin"
         android:layout_row="0"
         android:max="100"/>
     <TextView
@@ -26,31 +33,47 @@
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_gravity="right|top"
-        android:layout_margin="@dimen/options_view_margin"
+        android:layout_marginLeft="@dimen/options_view_lr_margin"
+        android:layout_marginRight="@dimen/options_view_lr_margin"
+        android:layout_marginTop="@dimen/options_view_tb_margin"
+        android:layout_marginBottom="@dimen/options_view_tb_margin"
         android:layout_row="1"
-        android:text="@string/options_auto_flash" />
+        android:text="@string/options_auto_flash"
+        android:textColor="@color/options_font_color"
+        android:fontFamily="@string/options_font_family" />
     <Switch
         android:id="@+id/switchAutoflash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_gravity="left|top"
-        android:layout_margin="@dimen/options_view_margin"
+        android:layout_marginLeft="@dimen/options_view_lr_margin"
+        android:layout_marginRight="@dimen/options_view_lr_margin"
+        android:layout_marginTop="@dimen/options_view_tb_margin"
+        android:layout_marginBottom="@dimen/options_view_tb_margin"
         android:layout_row="1" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="0"
         android:layout_gravity="right|top"
-        android:layout_margin="@dimen/options_view_margin"
+        android:layout_marginLeft="@dimen/options_view_lr_margin"
+        android:layout_marginRight="@dimen/options_view_lr_margin"
+        android:layout_marginTop="@dimen/options_view_tb_margin"
+        android:layout_marginBottom="@dimen/options_view_tb_margin"
         android:layout_row="2"
-        android:text="@string/options_light_sensing_mode" />
+        android:text="@string/options_light_sensing_mode"
+        android:textColor="@color/options_font_color"
+        android:fontFamily="@string/options_font_family" />
     <Switch
         android:id="@+id/switchLightSensingMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="1"
         android:layout_gravity="left|top"
-        android:layout_margin="@dimen/options_view_margin"
+        android:layout_marginLeft="@dimen/options_view_lr_margin"
+        android:layout_marginRight="@dimen/options_view_lr_margin"
+        android:layout_marginTop="@dimen/options_view_tb_margin"
+        android:layout_marginBottom="@dimen/options_view_tb_margin"
         android:layout_row="2" />
 </GridLayout>

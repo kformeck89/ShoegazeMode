@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 
-public class OnTheGoReceiver extends BroadcastReceiver {
+public class ShoegazeReceiver extends BroadcastReceiver {
 	public static final String ACTION_START = "com.kformeck.onthego.action.ON_THE_GO_START";
 	public static final String ACTION_STOP = "com.kformeck.onthego.action.ON_THE_GO_STOP";
 	public static final String ACTION_ALREADY_STOP = "com.kformeck.onthego.action.ON_THE_GO_ALREADY_STOP";
@@ -19,7 +19,7 @@ public class OnTheGoReceiver extends BroadcastReceiver {
 		final String action = intent.getAction();
 		Handler handler = new Handler();
 		if (action != null && !action.isEmpty()) {
-			final Intent serviceTriggerIntent = new Intent(context, OnTheGoService.class);
+			final Intent serviceTriggerIntent = new Intent(context, ShoegazeService.class);
 			if (action.equals(ACTION_START)) {
 				context.startService(serviceTriggerIntent);
 			} else if (action.equals(ACTION_STOP)) {

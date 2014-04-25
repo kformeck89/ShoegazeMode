@@ -25,12 +25,14 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class OnTheGoService extends Service implements FaceDetectionListener {
+public class ShoegazeService extends Service implements FaceDetectionListener {
 	private static final int ONTHEGO_NOTIFICATION_ID = 81333378;
 	private static final int CAMERA_BACK = 0;
 	private static final int CAMERA_FRONT = 1;
 	private static final int NOTIFICATION_STARTED = 0;
 	private static final float ALPHA_DEFAULT = 0.5f;
+	private static final float ALPHA_MAX = 0.9f;
+	private static final float ALPHA_MIN = 0.2f;
 	private Context context;
 	private FrameLayout overlay;
 	private Camera camera;
@@ -42,8 +44,8 @@ public class OnTheGoService extends Service implements FaceDetectionListener {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			if (action.equals(OnTheGoReceiver.ACTION_TOGGLE_ALPHA)) {
-				final float intentAlpha = intent.getFloatExtra(OnTheGoReceiver.EXTRA_ALPHA, ALPHA_DEFAULT);
+			if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_ALPHA)) {
+				final float intentAlpha = intent.getFloatExtra(ShoegazeReceiver.EXTRA_ALPHA, ALPHA_DEFAULT);
 				toggleOnTheGoAlpha(intentAlpha);
 			} else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
 				resetViews();
@@ -63,7 +65,7 @@ public class OnTheGoService extends Service implements FaceDetectionListener {
 		windowManager = (WindowManager)this.getSystemService(WINDOW_SERVICE);
 		
 		IntentFilter filter = new IntentFilter();
-		filter.addAction(OnTheGoReceiver.ACTION_TOGGLE_ALPHA);
+		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_USER_PRESENT);
 		registerReceiver(broadcastReceiver, filter);
@@ -93,9 +95,15 @@ public class OnTheGoService extends Service implements FaceDetectionListener {
 		toggleOnTheGoAlpha(alpha);
 	}
 	private void toggleOnTheGoAlpha(float alpha) {
-		// put the alpha into settings here
+		// TODO: put the alpha into settings here
 		if (overlay != null) {
-			overlay.setAlpha(alpha);
+			if (alpha > ALPHA_MAX) {
+				overlay.setAlpha(ALPHA_MAX);
+			} else if (alpha < ALPHA_MIN) {
+				overlay.setAlpha(ALPHA_MIN);
+			} else {
+				overlay.setAlpha(alpha);	
+			}
 		}
 	}
 	private void getCameraInstance(int type) throws RuntimeException {
@@ -170,7 +178,7 @@ public class OnTheGoService extends Service implements FaceDetectionListener {
 						} catch (IllegalArgumentException ilEx) {
 						} catch (RuntimeException rtEx) {
 						}
-						camera.setFaceDetectionListener(OnTheGoService.this);
+						camera.setFaceDetectionListener(ShoegazeService.this);
 						  
 					}
 				} catch (IOException ignore) { 

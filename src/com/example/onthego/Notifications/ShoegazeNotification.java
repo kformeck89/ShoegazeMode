@@ -1,7 +1,7 @@
 package com.example.onthego.Notifications;
 
-import com.example.onthego.OnTheGoReceiver;
-import com.example.onthego.OnTheGoUtilities;
+import com.example.onthego.ShoegazeReceiver;
+import com.example.onthego.ShoegazeUtilities;
 import com.example.onthego.R;
 
 import android.app.Notification;
@@ -35,11 +35,11 @@ public class ShoegazeNotification extends BaseNotification {
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1);
 		if (type == 1) {
-			PendingIntent restartIntent = OnTheGoUtilities.makeServiceIntent(context, OnTheGoReceiver.ACTION_RESTART);
+			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(context, ShoegazeReceiver.ACTION_RESTART);
 			builder.addAction(R.drawable.ic_launcher, "Restarting", restartIntent);
 		} else {
-			PendingIntent stopIntent = OnTheGoUtilities.makeServiceIntent(context, OnTheGoReceiver.ACTION_STOP);
-			PendingIntent optionsIntent = OnTheGoUtilities.makeServiceIntent(context, OnTheGoReceiver.ACTION_TOGGLE_OPTIONS);
+			PendingIntent stopIntent = ShoegazeUtilities.makeServiceIntent(context, ShoegazeReceiver.ACTION_STOP);
+			PendingIntent optionsIntent = ShoegazeUtilities.makeServiceIntent(context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS);
 			builder.addAction(R.drawable.ic_stop, "Stop", stopIntent)
 			       .addAction(R.drawable.ic_options, "Options", optionsIntent);
 		}

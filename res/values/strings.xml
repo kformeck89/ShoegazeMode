@@ -6,5 +6,6 @@
     <string name="options_alpha">Alpha: </string>
 	<string name="options_auto_flash">Auto-Flash:</string>
     <string name="options_light_sensing_mode">Light Sensing Mode:</string>
+    <string name="options_font_family">sans-serif-condensed</string>
 	
 </resources>

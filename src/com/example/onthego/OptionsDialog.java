@@ -31,7 +31,7 @@ public class OptionsDialog {
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,
 				WindowManager.LayoutParams.WRAP_CONTENT,
-				WindowManager.LayoutParams.TYPE_PHONE,
+				WindowManager.LayoutParams.TYPE_SYSTEM_ERROR,
 				WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON |
 				WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
 				WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
@@ -41,6 +41,7 @@ public class OptionsDialog {
 		overlay = ((LayoutInflater)context.getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.overlay_options, null, false);
 		overlay.setBackground(context.getResources().getDrawable(R.drawable.options_overlay_shape));
+		overlay.setAlpha(1);
 		
 		final SeekBar alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);
 		final float value = 0.5f; //TODO: retrieve this from settings instead
@@ -75,8 +76,8 @@ public class OptionsDialog {
 	private void sendAlphaBroadcast(String i) {
 		final float value = (Float.parseFloat(i) / 100);
 		final Intent alphaBroadcast = new Intent();
-		alphaBroadcast.setAction(OnTheGoReceiver.ACTION_TOGGLE_ALPHA);
-		alphaBroadcast.putExtra(OnTheGoReceiver.EXTRA_ALPHA, value);
+		alphaBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
+		alphaBroadcast.putExtra(ShoegazeReceiver.EXTRA_ALPHA, value);
 		context.sendBroadcast(alphaBroadcast);
 	}
 }

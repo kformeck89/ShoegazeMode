@@ -1,7 +1,7 @@
 package com.example.onthego.Notifications;
 
-import com.example.onthego.OnTheGoReceiver;
-import com.example.onthego.OnTheGoUtilities;
+import com.example.onthego.ShoegazeReceiver;
+import com.example.onthego.ShoegazeUtilities;
 import com.example.onthego.R;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -36,16 +36,16 @@ public class ActivationNotification extends BaseNotification {
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1);
 		if (type == 1) {
-			PendingIntent restartIntent = OnTheGoUtilities.makeServiceIntent(
-					context, OnTheGoReceiver.ACTION_RESTART);
+			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(
+					context, ShoegazeReceiver.ACTION_RESTART);
 			builder.addAction(R.drawable.ic_launcher, "Restart", restartIntent);
 		} else {
-			PendingIntent startIntent = OnTheGoUtilities.makeServiceIntent(
-					context, OnTheGoReceiver.ACTION_START);
+			PendingIntent startIntent = ShoegazeUtilities.makeServiceIntent(
+					context, ShoegazeReceiver.ACTION_START);
 			
 			// TODO: make this go to on_the_fly_settings
-			PendingIntent optionsIntent = OnTheGoUtilities.makeServiceIntent(
-					context, OnTheGoReceiver.ACTION_TOGGLE_OPTIONS);
+			PendingIntent optionsIntent = ShoegazeUtilities.makeServiceIntent(
+					context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS);
 			builder.addAction(R.drawable.ic_start, "Start", startIntent)
 			       .addAction(R.drawable.ic_options, "Options", optionsIntent);
 		}
