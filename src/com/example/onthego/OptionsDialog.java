@@ -53,13 +53,11 @@ public class OptionsDialog {
 		lsmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Intent toggleLsmIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
+				toggleLsmIntent.putExtra(ShoegazeReceiver.EXTRA_LSM, isChecked);
 				if (isChecked) {
 					retreiveBrightnessSettings();
-					DeviceUtils.setAutoBrightness(context, false);
-					
-					// Start light sensing service
-					
-					
+					DeviceUtils.setAutoBrightness(context, false);					
 				} else {
 					if (autoBrightnessWasOn) {
 						DeviceUtils.setAutoBrightness(context, true);
@@ -67,7 +65,18 @@ public class OptionsDialog {
 						DeviceUtils.setBrightnessLevel(context, prvBrightnessLevel);
 					}
 				}
+				context.sendBroadcast(toggleLsmIntent);
 			}	
+		});
+		
+		final Switch autoFlashSwitch = (Switch)overlay.findViewById(R.id.switchAutoflash);
+		autoFlashSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Intent toggleAutoFlashIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE);
+			    toggleAutoFlashIntent.putExtra(ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT, isChecked);
+			    context.sendBroadcast(toggleAutoFlashIntent);
+			}
 		});
 		
 		final SeekBar alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);

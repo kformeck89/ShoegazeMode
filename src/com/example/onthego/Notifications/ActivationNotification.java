@@ -42,8 +42,6 @@ public class ActivationNotification extends BaseNotification {
 		} else {
 			PendingIntent startIntent = ShoegazeUtilities.makeServiceIntent(
 					context, ShoegazeReceiver.ACTION_START);
-			
-			// TODO: make this go to on_the_fly_settings
 			PendingIntent optionsIntent = ShoegazeUtilities.makeServiceIntent(
 					context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS);
 			builder.addAction(R.drawable.ic_start, "Start", startIntent)

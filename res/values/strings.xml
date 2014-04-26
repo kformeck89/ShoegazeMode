@@ -7,5 +7,10 @@
 	<string name="options_auto_flash">Auto-Flash:</string>
     <string name="options_light_sensing_mode">Light Sensing Mode:</string>
     <string name="options_font_family">sans-serif-condensed</string>
+    
+    <string name="shoegaze_prefs">com.kformeck.shoegaze.APP_PREFS</string>
+    <string name="pref_user_alpha">com.kformeck.shoegaze.prefs.USER_ALPHA</string>
+	<string name="pref_light_sensing_mode">com.kformeck.shoegaze.prefs.LIGHT_SENSING_MODE</string>
+    <string name="pref_auto_flashlight_mode">com.kformeck.shoegaze.prefs.AUTO_FLASHLIGHT_MODE</string>
 	
 </resources>

@@ -54,6 +54,10 @@ public final class R {
         public static final int options_auto_flash=0x7f060003;
         public static final int options_font_family=0x7f060005;
         public static final int options_light_sensing_mode=0x7f060004;
+        public static final int pref_auto_flashlight_mode=0x7f060009;
+        public static final int pref_light_sensing_mode=0x7f060008;
+        public static final int pref_user_alpha=0x7f060007;
+        public static final int shoegaze_prefs=0x7f060006;
     }
     public static final class style {
         public static final int ActionBarTheme=0x7f070002;
