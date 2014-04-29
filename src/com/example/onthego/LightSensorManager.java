@@ -39,7 +39,7 @@ public class LightSensorManager implements SensorEventListener {
 	}
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		if (event.sensor.equals(Sensor.TYPE_LIGHT)) {
+		if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
 			int brightnessLevel = 0;
 			float alphaExtra = 0.0f;
 			Intent alphaChangedIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);

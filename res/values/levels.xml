@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <integer name="brightness_min">5</integer>
-    <integer name="brightness_very_low">8</integer>
-    <integer name="brightness_low">16</integer>
-    <integer name="brightness_medium_low">32</integer>
-    <integer name="brightness_medium">64</integer>
-    <integer name="brightness_medium_high">128</integer>
-    <integer name="brightness_high">196</integer>
-    <integer name="brightness_very_high">223</integer>
+    <integer name="brightness_min">30</integer>
+    <integer name="brightness_very_low">32</integer>
+    <integer name="brightness_low">96</integer>
+    <integer name="brightness_medium_low">128</integer>
+    <integer name="brightness_medium">160</integer>
+    <integer name="brightness_medium_high">192</integer>
+    <integer name="brightness_high">224</integer>
+    <integer name="brightness_very_high">245</integer>
     <integer name="brightness_max">250</integer>
     
 </resources>
