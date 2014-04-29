@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_help) {
-			
+			// TODO: Write help preferences activity
 		}
 		return super.onOptionsItemSelected(item);
 	}

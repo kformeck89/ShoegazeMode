@@ -33,11 +33,22 @@ public final class R {
         public static final int options_overlay_shape=0x7f020004;
     }
     public static final class id {
-        public static final int action_help=0x7f090004;
-        public static final int sliderAlpha=0x7f090001;
-        public static final int switchAutoflash=0x7f090002;
-        public static final int switchLightSensingMode=0x7f090003;
-        public static final int toggleButton=0x7f090000;
+        public static final int action_help=0x7f0a0004;
+        public static final int sliderAlpha=0x7f0a0001;
+        public static final int switchAutoflash=0x7f0a0002;
+        public static final int switchLightSensingMode=0x7f0a0003;
+        public static final int toggleButton=0x7f0a0000;
+    }
+    public static final class integer {
+        public static final int brightness_high=0x7f060006;
+        public static final int brightness_low=0x7f060002;
+        public static final int brightness_max=0x7f060008;
+        public static final int brightness_medium=0x7f060004;
+        public static final int brightness_medium_high=0x7f060005;
+        public static final int brightness_medium_low=0x7f060003;
+        public static final int brightness_min=0x7f060000;
+        public static final int brightness_very_high=0x7f060007;
+        public static final int brightness_very_low=0x7f060001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -45,31 +56,31 @@ public final class R {
         public static final int overlay_options=0x7f030002;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int action_help=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int options_alpha=0x7f060002;
-        public static final int options_auto_flash=0x7f060003;
-        public static final int options_font_family=0x7f060005;
-        public static final int options_light_sensing_mode=0x7f060004;
-        public static final int pref_auto_flashlight_mode=0x7f060009;
-        public static final int pref_light_sensing_mode=0x7f060008;
-        public static final int pref_user_alpha=0x7f060007;
-        public static final int shoegaze_prefs=0x7f060006;
+        public static final int action_help=0x7f070001;
+        public static final int app_name=0x7f070000;
+        public static final int options_alpha=0x7f070002;
+        public static final int options_auto_flash=0x7f070003;
+        public static final int options_font_family=0x7f070005;
+        public static final int options_light_sensing_mode=0x7f070004;
+        public static final int pref_auto_flashlight_mode=0x7f070009;
+        public static final int pref_light_sensing_mode=0x7f070008;
+        public static final int pref_user_alpha=0x7f070007;
+        public static final int shoegaze_prefs=0x7f070006;
     }
     public static final class style {
-        public static final int ActionBarTheme=0x7f070002;
+        public static final int ActionBarTheme=0x7f080002;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }

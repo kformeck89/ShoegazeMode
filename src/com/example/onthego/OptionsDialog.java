@@ -53,11 +53,9 @@ public class OptionsDialog {
 		lsmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				Intent toggleLsmIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
-				toggleLsmIntent.putExtra(ShoegazeReceiver.EXTRA_LSM, isChecked);
 				if (isChecked) {
 					retreiveBrightnessSettings();
-					DeviceUtils.setAutoBrightness(context, false);					
+					DeviceUtils.setAutoBrightness(context, false);
 				} else {
 					if (autoBrightnessWasOn) {
 						DeviceUtils.setAutoBrightness(context, true);
@@ -65,7 +63,7 @@ public class OptionsDialog {
 						DeviceUtils.setBrightnessLevel(context, prvBrightnessLevel);
 					}
 				}
-				context.sendBroadcast(toggleLsmIntent);
+				sendLsmBroadcast(isChecked);
 			}	
 		});
 		
@@ -115,6 +113,12 @@ public class OptionsDialog {
 		alphaBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 		alphaBroadcast.putExtra(ShoegazeReceiver.EXTRA_ALPHA, value);
 		context.sendBroadcast(alphaBroadcast);
+	}
+	private void sendLsmBroadcast(boolean value) {
+		Intent lsmBroadcast = new Intent();
+		lsmBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
+		lsmBroadcast.putExtra(ShoegazeReceiver.EXTRA_LSM, value);
+		context.sendBroadcast(lsmBroadcast);
 	}
 	private void retreiveBrightnessSettings() {
 		autoBrightnessWasOn = DeviceUtils.isAutoBrightnessOn(context);

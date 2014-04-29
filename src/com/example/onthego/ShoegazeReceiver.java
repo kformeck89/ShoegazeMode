@@ -38,9 +38,6 @@ public class ShoegazeReceiver extends BroadcastReceiver {
 					}}, 1000);
 			} else if (action.equals(ACTION_TOGGLE_OPTIONS)) {
 				OptionsDialog.getInstance(context).show();
-			} else if (action.equals(ACTION_TOGGLE_LIGHT_SENSING_MODE)) {
-				context.stopService(serviceTriggerIntent);
-				context.sendBroadcast(new Intent(ACTION_TOGGLE_LIGHT_SENSING_MODE));
 			} else if (action.equals(ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE)) {
 				context.stopService(serviceTriggerIntent);
 				context.sendBroadcast(new Intent(ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE));
