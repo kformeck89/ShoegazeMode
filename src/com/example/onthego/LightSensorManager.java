@@ -44,39 +44,39 @@ public class LightSensorManager implements SensorEventListener {
 			float alphaExtra = 0.0f;
 			Intent alphaChangedIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 			if (event.values[0] <= SensorManager.LIGHT_NO_MOON) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_min);
-				alphaExtra = ShoegazeService.ALPHA_MIN;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_max);
+				alphaExtra = ShoegazeService.ALPHA_MAX;
 			} else if (event.values[0] > SensorManager.LIGHT_NO_MOON &&
 					   event.values[0] <= SensorManager.LIGHT_FULLMOON) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_very_low);
-				alphaExtra = ShoegazeService.ALPHA_VERY_LOW;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_very_high);
+				alphaExtra = ShoegazeService.ALPHA_VERY_HIGH;
 			} else if (event.values[0] > SensorManager.LIGHT_FULLMOON &&
 					   event.values[0] <= SensorManager.LIGHT_CLOUDY) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_low);
-				alphaExtra = ShoegazeService.ALPHA_LOW;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_high);
+				alphaExtra = ShoegazeService.ALPHA_HIGH;
 			} else if (event.values[0] > SensorManager.LIGHT_CLOUDY &&
 					   event.values[0] <= SensorManager.LIGHT_SUNRISE) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_medium_low);
-				alphaExtra = ShoegazeService.ALPHA_MEDIUM_LOW;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_medium_high);
+				alphaExtra = ShoegazeService.ALPHA_MEDIUM_HIGH;
 			} else if (event.values[0] > SensorManager.LIGHT_SUNRISE &&
 					   event.values[0] <= SensorManager.LIGHT_OVERCAST) {
 				brightnessLevel = context.getResources().getInteger(R.integer.brightness_medium);
 				alphaExtra = ShoegazeService.ALPHA_MEDIUM;
 			} else if (event.values[0] > SensorManager.LIGHT_OVERCAST &&
 					   event.values[0] <= SensorManager.LIGHT_SHADE) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_medium_high);
-				alphaExtra = ShoegazeService.ALPHA_MEDIUM_HIGH;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_medium_low);
+				alphaExtra = ShoegazeService.ALPHA_MEDIUM_LOW;
 			} else if (event.values[0] > SensorManager.LIGHT_SHADE &&
 					   event.values[0] <= SensorManager.LIGHT_SUNLIGHT) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_high);
-				alphaExtra = ShoegazeService.ALPHA_HIGH;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_low);
+				alphaExtra = ShoegazeService.ALPHA_LOW;
 			} else if (event.values[0] > SensorManager.LIGHT_SUNLIGHT &&
 					   event.values[0] <= SensorManager.LIGHT_SUNLIGHT_MAX) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_very_high);
-				alphaExtra = ShoegazeService.ALPHA_VERY_HIGH;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_very_low);
+				alphaExtra = ShoegazeService.ALPHA_VERY_LOW;
 			} else if (event.values[0] > SensorManager.LIGHT_SUNLIGHT_MAX) {
-				brightnessLevel = context.getResources().getInteger(R.integer.brightness_max);
-				alphaExtra = ShoegazeService.ALPHA_MAX;
+				brightnessLevel = context.getResources().getInteger(R.integer.brightness_min);
+				alphaExtra = ShoegazeService.ALPHA_MIN;
 			}
 			DeviceUtils.setBrightnessLevel(context, brightnessLevel);
 			alphaChangedIntent.putExtra(ShoegazeReceiver.EXTRA_ALPHA, alphaExtra);
