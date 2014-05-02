@@ -37,13 +37,15 @@ public final class R {
         public static final int options_overlay_shape=0x7f020004;
     }
     public static final class id {
-        public static final int actionBarSwitch=0x7f0a0006;
-        public static final int btnCancel=0x7f0a0004;
-        public static final int btnSave=0x7f0a0005;
+        public static final int actionBarSwitch=0x7f0a0008;
+        public static final int btnCancel=0x7f0a0006;
+        public static final int btnSave=0x7f0a0007;
         public static final int masterSwitch=0x7f0a0003;
         public static final int sliderAlpha=0x7f0a0000;
         public static final int switchAutoflash=0x7f0a0001;
         public static final int switchLightSensingMode=0x7f0a0002;
+        public static final int txtAlpha=0x7f0a0004;
+        public static final int txtAutoFlash=0x7f0a0005;
     }
     public static final class integer {
         public static final int brightness_high=0x7f060006;

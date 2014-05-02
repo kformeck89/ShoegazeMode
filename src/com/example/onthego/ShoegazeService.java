@@ -26,7 +26,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class ShoegazeService extends Service implements FaceDetectionListener {
-	private static final String SHOEGAZE_PREFS = "com.kformeck.shoegaze.APP_PREFS";
 	private static final int CAMERA_BACK = 0;
 	private static final int CAMERA_FRONT = 1;
 	private static final int NOTIFICATION_STARTED = 0;
@@ -79,7 +78,8 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		powerManager = (PowerManager)this.getSystemService(POWER_SERVICE);
 		windowManager = (WindowManager)this.getSystemService(WINDOW_SERVICE);
 		
-		sharedPrefs = context.getSharedPreferences(SHOEGAZE_PREFS, Context.MODE_PRIVATE);
+		sharedPrefs = context.getSharedPreferences(
+				context.getResources().getString(R.string.shoegaze_prefs), Context.MODE_PRIVATE);
 		userAlpha = sharedPrefs.getFloat(
 				context.getResources().getString(R.string.pref_user_alpha), ALPHA_MEDIUM);
 		lightSensingModeActive = sharedPrefs.getBoolean(
@@ -121,7 +121,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private void toggleOnTheGoAlpha(float alpha) {
 		sharedPrefs.edit().putFloat(
 				context.getResources().getString(R.string.pref_user_alpha), 
-				alpha);
+				alpha).commit();
 		if (overlay != null) {
 			if (alpha > ALPHA_MAX) {
 				overlay.setAlpha(ALPHA_MAX);
@@ -252,7 +252,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	public void setUserAlpha(float userAlpha) {
 		this.userAlpha = userAlpha;
 		sharedPrefs.edit().putFloat(context.getResources().getString(
-				R.string.pref_user_alpha), userAlpha);
+				R.string.pref_user_alpha), userAlpha).commit();
 	}
 	public boolean getLightSensingModeActive() {
 		return lightSensingModeActive;
@@ -260,7 +260,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	public void setLightSensingModeActive(boolean isActive) {
 		lightSensingModeActive = isActive;
 		sharedPrefs.edit().putBoolean(context.getResources().getString(
-				R.string.pref_light_sensing_mode), isActive);
+				R.string.pref_light_sensing_mode), isActive).commit();
 		if (isActive) {
 			LightSensorManager.getInstance(context).start();
 		} else {
@@ -273,7 +273,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	public void setAutoFlashlightModeActive(boolean isActive) {
 		autoFlashlightModeActive = isActive;
 		sharedPrefs.edit().putBoolean(context.getResources().getString(
-				R.string.pref_auto_flashlight_mode), isActive);
+				R.string.pref_auto_flashlight_mode), isActive).commit();
 	}
 
 	@Override

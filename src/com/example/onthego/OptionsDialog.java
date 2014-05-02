@@ -2,23 +2,38 @@ package com.example.onthego;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
 public class OptionsDialog {
 	private static OptionsDialog instance;
+	
 	private boolean autoBrightnessWasOn;
+	private boolean isAutoModeOn;
+	private boolean isAutoFlashOn;
 	private int prvBrightnessLevel;
+	private float userAlpha;
+	
 	private Context context;
+	private SharedPreferences sharedPrefs;
 	private View overlay;
+	private Switch autoFlashSwitch;
+	private SeekBar alphaSlider;
 	private WindowManager windowManager;
+	
+	private enum UiMode {
+		AUTO,
+		MANUAL
+	};
 	
 	public static OptionsDialog getInstance(Context context) {
 		if (instance == null) {
@@ -29,9 +44,21 @@ public class OptionsDialog {
 	private OptionsDialog(Context context) {
 		this.context = context;
 		retreiveBrightnessSettings();
+		
+		sharedPrefs = context.getSharedPreferences(
+				context.getResources().getString(R.string.shoegaze_prefs), Context.MODE_PRIVATE);
 	}
 	
 	public void show() {
+		userAlpha = sharedPrefs.getFloat(
+				context.getResources().getString(R.string.pref_user_alpha),
+				context.getResources().getInteger(R.integer.brightness_medium));
+		isAutoModeOn = sharedPrefs.getBoolean(
+				context.getResources().getString(R.string.pref_light_sensing_mode), false);
+		isAutoFlashOn = sharedPrefs.getBoolean(
+				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
+		final int progress = (int)(userAlpha * 100);
+		
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);		
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,
@@ -49,64 +76,93 @@ public class OptionsDialog {
 				R.drawable.options_overlay_shape));
 		overlay.setAlpha(1);
 		
-		final Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
+		Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
+		Button btnSave = (Button)overlay.findViewById(R.id.btnSave);
+		Button btnCancel = (Button)overlay.findViewById(R.id.btnCancel);
+		autoFlashSwitch = (Switch)overlay.findViewById(R.id.switchAutoflash);
+		alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);
+		
 		lsmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (isChecked) {
+					isAutoModeOn = true;
+					rearrangeUi(UiMode.AUTO);
 					retreiveBrightnessSettings();
-					DeviceUtils.setAutoBrightness(context, false);
+					DeviceUtils.setAutoBrightness(context, false);					
 				} else {
+					isAutoModeOn = false;
+					isAutoFlashOn = false;
+					rearrangeUi(UiMode.MANUAL);
 					if (autoBrightnessWasOn) {
 						DeviceUtils.setAutoBrightness(context, true);
 					} else {
 						DeviceUtils.setBrightnessLevel(context, prvBrightnessLevel);
-					}
+					}					
 				}
 				sendLsmBroadcast(isChecked);
 			}	
-		});
-		
-		final Switch autoFlashSwitch = (Switch)overlay.findViewById(R.id.switchAutoflash);
+		});			
 		autoFlashSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				isAutoFlashOn = isChecked;
 				Intent toggleAutoFlashIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE);
 			    toggleAutoFlashIntent.putExtra(ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT, isChecked);
 			    context.sendBroadcast(toggleAutoFlashIntent);
 			}
-		});
-		
-		final SeekBar alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);
-		final float value = 0.5f; //TODO: retrieve this from settings instead
-		final int progress = (int)(value * 100);
-		alphaSlider.setProgress(progress);
+		});		
 		alphaSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				sendAlphaBroadcast(String.valueOf(progress + 10));
+				userAlpha = (float)progress / 100f;
+				sendAlphaBroadcast(String.valueOf(userAlpha));
 			}
 			@Override
 			public void onStartTrackingTouch(SeekBar arg0) { }
 			@Override
 			public void onStopTrackingTouch(SeekBar arg0) {	}
 		});
-		
-		overlay.setOnTouchListener(new View.OnTouchListener() {
+		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-					if (windowManager != null) {
-						windowManager.removeView(overlay);
-						windowManager = null;
-					}
-				}
-				return false;
+			public void onClick(View v) {
+				saveSettings();
+				close();
+			}
+		});
+		btnCancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				close();
 			}
 		});
 		
+		rearrangeUi(isAutoModeOn ? UiMode.AUTO : UiMode.MANUAL);
+		lsmSwitch.setChecked(isAutoModeOn);
+		alphaSlider.setProgress(progress);
+		
 		windowManager.addView(overlay, params);
 	}	
+	private void saveSettings() {
+		sharedPrefs.edit()
+		           .putBoolean(context.getResources().getString(R.string.pref_light_sensing_mode), isAutoModeOn)
+		           .commit();
+		sharedPrefs.edit()
+				   .putBoolean(context.getResources().getString(R.string.pref_auto_flashlight_mode), isAutoFlashOn)
+				   .commit();
+		sharedPrefs.edit()
+				   .putFloat(context.getResources().getString(R.string.pref_user_alpha), userAlpha)
+				   .commit();
+	}
+	private void rearrangeUi(UiMode mode) {
+		if (mode == UiMode.AUTO) {
+			alphaSlider.setVisibility(View.GONE);
+			autoFlashSwitch.setVisibility(View.VISIBLE);
+		} else {
+			autoFlashSwitch.setVisibility(View.GONE);
+			alphaSlider.setVisibility(View.VISIBLE);
+		}
+	}
 	private void sendAlphaBroadcast(String i) {
 		final float value = (Float.parseFloat(i) / 100);
 		final Intent alphaBroadcast = new Intent();
@@ -123,5 +179,11 @@ public class OptionsDialog {
 	private void retreiveBrightnessSettings() {
 		autoBrightnessWasOn = DeviceUtils.isAutoBrightnessOn(context);
 		prvBrightnessLevel = DeviceUtils.getBrightnessLevel(context);
+	}
+	private void close() {
+		if (windowManager != null) {
+			windowManager.removeView(overlay);
+			windowManager = null;
+		}
 	}
 }

@@ -48,15 +48,17 @@
 	        android:layout_marginBottom="@dimen/options_view_tb_margin"
 	        android:layout_row="0" />
 	    <TextView
+	        android:id="@+id/txtAlpha"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_column="2"
+	        android:layout_column="0"
 	        android:layout_gravity="center_vertical|right"
 	        android:layout_marginLeft="@dimen/options_view_lr_margin"
 	        android:layout_marginRight="@dimen/options_view_lr_margin"
 	        android:layout_marginTop="@dimen/options_view_tb_margin"
 	        android:layout_marginBottom="@dimen/options_view_tb_margin"
-	        android:layout_row="0"
+	        android:layout_row="1"
+	        android:visibility="visible"
 	        android:text="@string/options_alpha"
 	        android:textColor="@color/options_font_color"
 	        android:fontFamily="@string/options_font_family" />
@@ -64,14 +66,16 @@
 	        android:id="@+id/sliderAlpha"
 	        android:layout_width="@dimen/options_slider_width"
 	        android:layout_height="wrap_content"
-	        android:layout_column="3"
+	        android:layout_column="1"
 	        android:layout_gravity="fill_horizontal|center_vertical"
 	        android:layout_marginRight="@dimen/options_view_lr_margin"
 	        android:layout_marginTop="@dimen/options_view_tb_margin"
 	        android:layout_marginBottom="@dimen/options_view_tb_margin"
-	        android:layout_row="0"
+	        android:layout_row="1"
+	        android:visibility="visible"
 	        android:max="100"/>
 	    <TextView
+	        android:id="@+id/txtAutoFlash"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_column="0"
@@ -81,7 +85,7 @@
 	        android:layout_marginTop="@dimen/options_view_tb_margin"
 	        android:layout_marginBottom="@dimen/options_view_tb_margin"
 	        android:layout_row="1"
-	        android:enabled="false"
+	        android:visibility="gone"
 	        android:text="@string/options_auto_flash"
 	        android:textColor="@color/options_font_color"
 	        android:fontFamily="@string/options_font_family" />
@@ -89,14 +93,14 @@
 	        android:id="@+id/switchAutoflash"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:enabled="false"
 	        android:layout_column="1"
 	        android:layout_gravity="left|top"
 	        android:layout_marginLeft="@dimen/options_view_lr_margin"
 	        android:layout_marginRight="@dimen/options_view_lr_margin"
 	        android:layout_marginTop="@dimen/options_view_tb_margin"
 	        android:layout_marginBottom="@dimen/options_view_tb_margin"
-	        android:layout_row="1" />
+	        android:layout_row="1"
+	        android:visibility="gone" />
 	</GridLayout>
 	
     <View 
