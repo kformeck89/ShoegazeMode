@@ -125,7 +125,7 @@ public class OptionsDialog {
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				saveSettings();
+				ShoegazeUtilities.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
 				close();
 			}
 		});
@@ -142,17 +142,6 @@ public class OptionsDialog {
 		
 		windowManager.addView(overlay, params);
 	}	
-	private void saveSettings() {
-		sharedPrefs.edit()
-		           .putBoolean(context.getResources().getString(R.string.pref_light_sensing_mode), isAutoModeOn)
-		           .commit();
-		sharedPrefs.edit()
-				   .putBoolean(context.getResources().getString(R.string.pref_auto_flashlight_mode), isAutoFlashOn)
-				   .commit();
-		sharedPrefs.edit()
-				   .putFloat(context.getResources().getString(R.string.pref_user_alpha), userAlpha)
-				   .commit();
-	}
 	private void rearrangeUi(UiMode mode) {
 		if (mode == UiMode.AUTO) {
 			alphaSlider.setVisibility(View.GONE);
