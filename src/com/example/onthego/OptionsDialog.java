@@ -57,7 +57,6 @@ public class OptionsDialog {
 				context.getResources().getString(R.string.pref_light_sensing_mode), false);
 		isAutoFlashOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
-		final int progress = (int)(userAlpha * 100);
 		
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);		
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
@@ -115,7 +114,7 @@ public class OptionsDialog {
 		alphaSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				userAlpha = (float)progress / 100f;
+				userAlpha = (float)(progress);
 				sendAlphaBroadcast(String.valueOf(userAlpha));
 			}
 			@Override
@@ -139,7 +138,7 @@ public class OptionsDialog {
 		
 		rearrangeUi(isAutoModeOn ? UiMode.AUTO : UiMode.MANUAL);
 		lsmSwitch.setChecked(isAutoModeOn);
-		alphaSlider.setProgress(progress);
+		alphaSlider.setProgress((int)userAlpha);
 		
 		windowManager.addView(overlay, params);
 	}	
