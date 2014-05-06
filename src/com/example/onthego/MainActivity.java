@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+/*		setContentView(R.layout.activity_main);
 		ToggleButton toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
 		toggleButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
@@ -26,7 +26,11 @@ public class MainActivity extends Activity {
 					ActivationNotification.getInstance().cancelNotification();
 				}
 			}	
-		});
+		});*/
+		
+		getFragmentManager().beginTransaction()
+		                    .replace(android.R.id.content, new SettingsFragment())
+		                    .commit();
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

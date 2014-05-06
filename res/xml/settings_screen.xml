@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/settings_group_settings">
+    	<CheckBoxPreference
+    	    android:id="@+id/chkOnBoot"
+        	android:title="@string/settings_onboot_title"
+        	android:summary="@string/settings_onboot_summary"
+        	android:defaultValue="false"/>  
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/settings_group_general">
+		<PreferenceScreen android:title="@string/settings_help_title"/>
+		<PreferenceScreen android:title="@string/settings_about_title"/>
+		<PreferenceScreen android:title="@string/settings_changelog_title"/>
+    </PreferenceCategory>
+</PreferenceScreen>
