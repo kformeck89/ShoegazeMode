@@ -26,7 +26,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class ShoegazeService extends Service implements FaceDetectionListener {
-	private static final String SHOEGAZE_PREFS = "com.kformeck.shoegaze.APP_PREFS";
 	private static final int CAMERA_BACK = 0;
 	private static final int CAMERA_FRONT = 1;
 	private static final int NOTIFICATION_STARTED = 0;
@@ -42,8 +41,8 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	public static final float ALPHA_MAX = 0.9f;
 	
 	private float userAlpha;
-	private boolean lightSensingModeActive;
-	private boolean autoFlashlightModeActive;
+	private boolean isAutoModeOn;
+	private boolean isAutoFlashOn;
 	
 	private Context context;
 	private FrameLayout overlay;
@@ -79,12 +78,13 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		powerManager = (PowerManager)this.getSystemService(POWER_SERVICE);
 		windowManager = (WindowManager)this.getSystemService(WINDOW_SERVICE);
 		
-		sharedPrefs = context.getSharedPreferences(SHOEGAZE_PREFS, Context.MODE_PRIVATE);
+		sharedPrefs = context.getSharedPreferences(
+				context.getResources().getString(R.string.shoegaze_prefs), Context.MODE_PRIVATE);
 		userAlpha = sharedPrefs.getFloat(
 				context.getResources().getString(R.string.pref_user_alpha), ALPHA_MEDIUM);
-		lightSensingModeActive = sharedPrefs.getBoolean(
+		isAutoModeOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_light_sensing_mode), false);
-		autoFlashlightModeActive = sharedPrefs.getBoolean(
+		isAutoFlashOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
 		
 		IntentFilter filter = new IntentFilter();
@@ -96,17 +96,17 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		registerReceiver(broadcastReceiver, filter);
 		
 		setupViews();
-		ShoegazeNotification.getInstance().startNotification(context, NOTIFICATION_STARTED);
 	}
 	@Override
 	public void onDestroy() {
 		if (broadcastReceiver != null) {
 			unregisterReceiver(broadcastReceiver);
 		}
+		
 		resetViews();
 		ShoegazeNotification.getInstance().cancelNotification();
+		ShoegazeUtilities.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
 		
-		//TODO: probably need to save user settings here
 		super.onDestroy();
 	}
 	@Override
@@ -121,7 +121,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private void toggleOnTheGoAlpha(float alpha) {
 		sharedPrefs.edit().putFloat(
 				context.getResources().getString(R.string.pref_user_alpha), 
-				alpha);
+				alpha).commit();
 		if (overlay != null) {
 			if (alpha > ALPHA_MAX) {
 				overlay.setAlpha(ALPHA_MAX);
@@ -162,7 +162,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 			getCameraInstance(cameraType);
 		} catch (RuntimeException ex) {
 			Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
-			//createNotification(NOTIFICATION_ERROR);
 			success = false;
 		}
 		
@@ -202,6 +201,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 							camera.startFaceDetection();
 						} catch (IllegalArgumentException ilEx) {
 						} catch (RuntimeException rtEx) {
+							// TODO: catch errors here
 						}
 						camera.setFaceDetectionListener(ShoegazeService.this);
 						  
@@ -211,7 +211,10 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 			}
 		});
 		
-		// TODO: Retreive "Light Sensing Mode" setting and turn it on if necessary
+		if (isAutoModeOn) {
+			setLightSensingModeActive(isAutoModeOn);
+			setAutoFlashlightModeActive(isAutoFlashOn);
+		}
 		
 		overlay = new FrameLayout(context);
 		overlay.setLayoutParams(new FrameLayout.LayoutParams(
@@ -223,6 +226,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		toggleOnTheGoAlpha();
 		
 		ActivationNotification.getInstance().cancelNotification();
+		ShoegazeNotification.getInstance().startNotification(context, NOTIFICATION_STARTED);
 	}
 	private void resetViews() {
 		if (overlay != null) {
@@ -252,15 +256,15 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	public void setUserAlpha(float userAlpha) {
 		this.userAlpha = userAlpha;
 		sharedPrefs.edit().putFloat(context.getResources().getString(
-				R.string.pref_user_alpha), userAlpha);
+				R.string.pref_user_alpha), userAlpha).commit();
 	}
 	public boolean getLightSensingModeActive() {
-		return lightSensingModeActive;
+		return isAutoModeOn;
 	}
 	public void setLightSensingModeActive(boolean isActive) {
-		lightSensingModeActive = isActive;
+		isAutoModeOn = isActive;
 		sharedPrefs.edit().putBoolean(context.getResources().getString(
-				R.string.pref_light_sensing_mode), isActive);
+				R.string.pref_light_sensing_mode), isActive).commit();
 		if (isActive) {
 			LightSensorManager.getInstance(context).start();
 		} else {
@@ -268,12 +272,12 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		}
 	}
 	public boolean getAutoFlashlightModeActive() {
-		return autoFlashlightModeActive;
+		return isAutoFlashOn;
 	}
 	public void setAutoFlashlightModeActive(boolean isActive) {
-		autoFlashlightModeActive = isActive;
+		isAutoFlashOn = isActive;
 		sharedPrefs.edit().putBoolean(context.getResources().getString(
-				R.string.pref_auto_flashlight_mode), isActive);
+				R.string.pref_auto_flashlight_mode), isActive).commit();
 	}
 
 	@Override

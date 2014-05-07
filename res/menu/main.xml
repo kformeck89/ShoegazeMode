@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
-        android:id="@+id/action_help"
-        android:orderInCategory="1"
-        android:showAsAction="never"
-        android:title="@string/action_help"/>
+        android:id="@+id/actionBarSwitch"
+        android:title="@string/master_switch_title"
+        android:showAsAction="always"
+        android:actionLayout="@layout/layout_menu_main"/>   
 </menu>

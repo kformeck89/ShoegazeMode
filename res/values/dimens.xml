@@ -4,15 +4,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     
-	<dimen name="options_width">200dp</dimen>
-    <dimen name="options_height">90dp</dimen>
+    <dimen name="action_bar_text_size">18sp</dimen>
+    
+	<dimen name="options_width">220dp</dimen>
+    <dimen name="options_height">40dp</dimen>
     <dimen name="options_header_margin">10dp</dimen>
     <dimen name="options_header_textsize">22sp</dimen>
-    <dimen name="options_slider_width">180dp</dimen>
+    <dimen name="options_slider_width">200dp</dimen>
     <dimen name="options_overlay_corner_radius">15dp</dimen>
     <dimen name="options_view_lr_margin">10dp</dimen>
     <dimen name="options_view_tb_margin">20dp</dimen>
-    
-   
     
 </resources>

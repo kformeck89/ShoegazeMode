@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">OnTheGo</string>
+    <string name="app_name">Shoegaze Mode</string>
+    
+    <string name="master_switch_title">Toggle Shoegaze Mode</string>
     <string name="action_help">Help</string>
+    
     <string name="options_header">Shoegaze Settings</string>
     <string name="options_save">Save</string>
     <string name="options_cancel">Cancel</string>
     <string name="options_alpha">Alpha: </string>
-	<string name="options_auto_flash">Auto-Flash:</string>
-    <string name="options_light_sensing_mode">Light Sensing Mode:</string>
+	<string name="options_auto_flash">Flash:</string>
+    <string name="options_light_sensing_mode">Auto:</string>
+    
     <string name="options_font_family">sans-serif-condensed</string>
+    <string name="action_bar_font_family">sans-serif</string>
     
     <string name="settings_group_settings">Settings</string>
     <string name="settings_group_general">General</string>
