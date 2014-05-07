@@ -1,12 +1,15 @@
 package com.kformeck.shoegaze.notifications;
 
 import com.example.onthego.R;
+import com.kformeck.shoegaze.MainActivity;
 import com.kformeck.shoegaze.ShoegazeUtilities;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.Intent;
 
 public class ActivationNotification extends BaseNotification {
 	private static ActivationNotification instance;
@@ -28,6 +31,11 @@ public class ActivationNotification extends BaseNotification {
 	public void startNotification(Context context, int type) {
 		super.startNotification(context, type);
 		
+		Intent mainActivityIntent = new Intent(context, MainActivity.class);
+		TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+		stackBuilder.addParentStack(MainActivity.class);
+		stackBuilder.addNextIntent(mainActivityIntent);		
+		
 		Notification.Builder builder = new Notification.Builder(context);
 		
 		// TODO: fix ticker icon
@@ -35,7 +43,9 @@ public class ActivationNotification extends BaseNotification {
 			   .setContentTitle("Shoegaze Mode")
 			   .setSmallIcon(R.drawable.ic_launcher)
 			   .setWhen(System.currentTimeMillis())
-			   .setOngoing(type != 1);
+			   .setOngoing(type != 1)
+			   .setContentIntent(
+					   stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT));
 		if (type == 1) {
 			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(
 					context, ShoegazeReceiver.ACTION_RESTART);

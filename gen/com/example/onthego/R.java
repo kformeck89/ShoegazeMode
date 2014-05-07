@@ -34,7 +34,8 @@ public final class R {
         public static final int ic_options=0x7f020001;
         public static final int ic_start=0x7f020002;
         public static final int ic_stop=0x7f020003;
-        public static final int options_overlay_shape=0x7f020004;
+        public static final int ic_switch_camera=0x7f020004;
+        public static final int options_overlay_shape=0x7f020005;
     }
     public static final class id {
         public static final int actionBarSwitch=0x7f0b0008;
@@ -68,9 +69,9 @@ public final class R {
     public static final class string {
         public static final int action_bar_font_family=0x7f08000a;
         public static final int action_help=0x7f080002;
-        public static final int action_shoegaze_state_toggled=0x7f080018;
+        public static final int action_shoegaze_state_toggled=0x7f080019;
         public static final int app_name=0x7f080000;
-        public static final int extra_app_state=0x7f080019;
+        public static final int extra_app_state=0x7f08001a;
         public static final int master_switch_title=0x7f080001;
         public static final int options_alpha=0x7f080006;
         public static final int options_auto_flash=0x7f080007;
@@ -80,8 +81,9 @@ public final class R {
         public static final int options_light_sensing_mode=0x7f080008;
         public static final int options_save=0x7f080004;
         public static final int pref_app_state=0x7f080014;
-        public static final int pref_auto_flashlight_mode=0x7f080017;
-        public static final int pref_light_sensing_mode=0x7f080016;
+        public static final int pref_auto_flashlight_mode=0x7f080018;
+        public static final int pref_camera_type=0x7f080016;
+        public static final int pref_light_sensing_mode=0x7f080017;
         public static final int pref_user_alpha=0x7f080015;
         public static final int settings_about_title=0x7f080010;
         public static final int settings_changelog_title=0x7f080011;
