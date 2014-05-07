@@ -38,21 +38,21 @@ public class ShoegazeNotification extends BaseNotification {
 		if (type == 1) {
 			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(context, ShoegazeReceiver.ACTION_RESTART);
 			builder.addAction(R.drawable.ic_launcher, "Restarting", restartIntent);
-		} else {
-			Intent thing = new Intent();
-			thing.setAction(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE);
-			
-			PendingIntent stopIntent = ShoegazeUtilities.makeServiceIntent(
-					context, ShoegazeReceiver.ACTION_STOP);
-			PendingIntent cameraSwapIntent = ShoegazeUtilities.makeServiceIntent(
-					context, ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE);
-			PendingIntent optionsIntent = ShoegazeUtilities.makeServiceIntent(
-					context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS);
-			builder.addAction(R.drawable.ic_stop, "Stop", stopIntent)
+		} else {			
+			builder.addAction(
+						R.drawable.ic_stop, "",
+						ShoegazeUtilities.makeServiceIntent(
+								context, ShoegazeReceiver.ACTION_STOP))
 			       .addAction(
-			    		   R.drawable.ic_switch_camera, "Switch Cameras",
-			    		   PendingIntent.getBroadcast(context, 0, thing, PendingIntent.FLAG_CANCEL_CURRENT))
-			       .addAction(R.drawable.ic_options, "Options", optionsIntent);
+			    		   R.drawable.ic_switch_camera, "",
+			    		   PendingIntent.getBroadcast(
+			    				   context, 0, 
+			    				   new Intent(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE), 
+			    				   PendingIntent.FLAG_CANCEL_CURRENT))
+			       .addAction(
+			    		   R.drawable.ic_options, "", 
+			    		   ShoegazeUtilities.makeServiceIntent(
+			   					context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS));
 		}
 		notificationManager.notify(ID, builder.build());
 	}

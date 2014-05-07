@@ -110,6 +110,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		
 		resetViews();
 		ShoegazeNotification.getInstance().cancelNotification();
+		ActivationNotification.getInstance().startNotification(context, 0);
 		ShoegazeUtilities.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
 		
 		super.onDestroy();
@@ -248,7 +249,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 			overlay.removeAllViews();
 			windowManager.removeView(overlay);
 			overlay = null;
-			ActivationNotification.getInstance().startNotification(context, 0);
 		}
 	}
 	private void releaseCamera() {
