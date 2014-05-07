@@ -1,4 +1,4 @@
-package com.example.onthego;
+package com.kformeck.shoegaze;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

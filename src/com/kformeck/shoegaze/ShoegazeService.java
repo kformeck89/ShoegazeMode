@@ -1,9 +1,11 @@
-package com.example.onthego;
+package com.kformeck.shoegaze;
 
 import java.io.IOException;
 
-import com.example.onthego.Notifications.ActivationNotification;
-import com.example.onthego.Notifications.ShoegazeNotification;
+import com.example.onthego.R;
+import com.kformeck.shoegaze.notifications.ActivationNotification;
+import com.kformeck.shoegaze.notifications.ShoegazeNotification;
+import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

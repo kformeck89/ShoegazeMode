@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/settings_group_settings">
     	<CheckBoxPreference
-    	    android:id="@+id/chkOnBoot"
+    	    android:key="@string/settings_key_onboot"
         	android:title="@string/settings_onboot_title"
         	android:summary="@string/settings_onboot_summary"
         	android:defaultValue="false"/>  

@@ -1,4 +1,4 @@
-package com.example.onthego.Notifications;
+package com.kformeck.shoegaze.notifications;
 
 import android.app.NotificationManager;
 import android.content.Context;

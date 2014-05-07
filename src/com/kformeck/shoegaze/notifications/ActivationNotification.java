@@ -1,8 +1,9 @@
-package com.example.onthego.Notifications;
+package com.kformeck.shoegaze.notifications;
 
-import com.example.onthego.ShoegazeReceiver;
-import com.example.onthego.ShoegazeUtilities;
 import com.example.onthego.R;
+import com.kformeck.shoegaze.ShoegazeUtilities;
+import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;

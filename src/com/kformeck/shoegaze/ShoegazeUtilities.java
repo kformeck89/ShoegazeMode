@@ -1,4 +1,7 @@
-package com.example.onthego;
+package com.kformeck.shoegaze;
+
+import com.example.onthego.R;
+import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 
 import android.app.PendingIntent;
 import android.content.Context;

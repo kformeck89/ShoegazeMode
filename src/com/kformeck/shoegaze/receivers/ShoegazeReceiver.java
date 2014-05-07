@@ -1,4 +1,7 @@
-package com.example.onthego;
+package com.kformeck.shoegaze.receivers;
+
+import com.kformeck.shoegaze.OptionsDialog;
+import com.kformeck.shoegaze.ShoegazeService;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
