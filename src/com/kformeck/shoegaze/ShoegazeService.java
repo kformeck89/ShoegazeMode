@@ -42,6 +42,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	public static final float ALPHA_VERY_HIGH = 0.8f;
 	public static final float ALPHA_MAX = 0.9f;
 	
+	private int cameraType;
 	private float userAlpha;
 	private boolean isAutoModeOn;
 	private boolean isAutoFlashOn;
@@ -90,6 +91,8 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				context.getResources().getString(R.string.pref_light_sensing_mode), false);
 		isAutoFlashOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
+		cameraType = sharedPrefs.getInt(
+				context.getResources().getString(R.string.pref_camera_type), 0);
 		
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
@@ -163,16 +166,23 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	}
 	private void switchCameras() {
 		if (DeviceUtils.deviceSupportsFrontCamera(context)) {
+			int newCameraState;
+			if (sharedPrefs.getInt(
+					context.getResources().getString(R.string.pref_camera_type), 0) == 0) {
+				newCameraState = 1;
+			} else {
+				newCameraState = 0;
+			}
 			sharedPrefs.edit()
-			           .putInt(context.getResources().getString(R.string.pref_camera_type), 0);
+			           .putInt(context.getResources().getString(
+			        		   R.string.pref_camera_type), newCameraState)
+			           .apply();
 			Intent restartIntent = new Intent(context, ShoegazeReceiver.class);
 			restartIntent.setAction(ShoegazeReceiver.ACTION_RESTART);
 			context.sendBroadcast(restartIntent);
 		} 
 	}
 	private void setupViews() {
-		int cameraType = sharedPrefs.getInt(
-				context.getResources().getString(R.string.pref_camera_type), 0);
 		boolean success = true;
 		try {
 			getCameraInstance(cameraType);

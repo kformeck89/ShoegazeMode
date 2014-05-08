@@ -22,12 +22,12 @@ public class ShoegazeUtilities {
 			float userAlpha) {
 		sharedPrefs.edit()
         		   .putBoolean(context.getResources().getString(R.string.pref_light_sensing_mode), isAutoModeOn)
-        		   .commit();
+        		   .apply();
 		sharedPrefs.edit()
 		   	       .putBoolean(context.getResources().getString(R.string.pref_auto_flashlight_mode), isAutoFlashOn)
-		   	       .commit();
+		   	       .apply();
 		sharedPrefs.edit()
 		   	 	   .putFloat(context.getResources().getString(R.string.pref_user_alpha), userAlpha)
-		   	 	   .commit();
+		   	 	   .apply();
 	}
 }

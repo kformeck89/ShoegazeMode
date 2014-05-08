@@ -34,7 +34,8 @@ public class ShoegazeNotification extends BaseNotification {
 			   .setContentTitle("Shoegazing...")
 			   .setSmallIcon(R.drawable.ic_launcher)
 			   .setWhen(System.currentTimeMillis())
-			   .setOngoing(type != 1);
+			   .setOngoing(type != 1)
+			   .setPriority(Notification.PRIORITY_MAX);
 		if (type == 1) {
 			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(context, ShoegazeReceiver.ACTION_RESTART);
 			builder.addAction(R.drawable.ic_launcher, "Restarting", restartIntent);
