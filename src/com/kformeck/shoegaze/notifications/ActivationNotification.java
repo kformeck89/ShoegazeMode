@@ -1,15 +1,12 @@
 package com.kformeck.shoegaze.notifications;
 
 import com.example.onthego.R;
-import com.kformeck.shoegaze.MainActivity;
 import com.kformeck.shoegaze.ShoegazeUtilities;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
-import android.content.Intent;
 
 public class ActivationNotification extends BaseNotification {
 	private static ActivationNotification instance;
@@ -29,24 +26,16 @@ public class ActivationNotification extends BaseNotification {
 	}
 	@Override
 	public void startNotification(Context context, int type) {
-		super.startNotification(context, type);
-		
-		Intent mainActivityIntent = new Intent(context, MainActivity.class);
-		TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-		stackBuilder.addParentStack(MainActivity.class);
-		stackBuilder.addNextIntent(mainActivityIntent);		
+		super.startNotification(context, type);	
 		
 		Notification.Builder builder = new Notification.Builder(context);
-		
-		// TODO: fix ticker icon
 		builder.setTicker("Shoegaze Enabled")
 			   .setContentTitle("Shoegaze Mode")
 			   .setSmallIcon(R.drawable.ic_launcher)
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1)
 			   .setPriority(Notification.PRIORITY_MAX)
-			   .setContentIntent(
-					   stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT));
+			   .setContentIntent(getContentIntent());
 		if (type == 1) {
 			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(
 					context, ShoegazeReceiver.ACTION_RESTART);

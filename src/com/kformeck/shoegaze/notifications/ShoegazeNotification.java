@@ -12,6 +12,7 @@ import android.content.Intent;
 public class ShoegazeNotification extends BaseNotification {
 	private static ShoegazeNotification instance;
 	private static final int ID = 81333378;
+	private boolean isShoegazing;
 	
 	public static ShoegazeNotification getInstance() {
 		if (instance == null) {
@@ -19,7 +20,7 @@ public class ShoegazeNotification extends BaseNotification {
 		}
 		return instance;
 	}
-	private ShoegazeNotification() { }
+	private ShoegazeNotification() { isShoegazing = false; }
 	
 	@Override
 	protected int getId() {
@@ -35,7 +36,8 @@ public class ShoegazeNotification extends BaseNotification {
 			   .setSmallIcon(R.drawable.ic_launcher)
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1)
-			   .setPriority(Notification.PRIORITY_MAX);
+			   .setPriority(Notification.PRIORITY_MAX)
+			   .setContentIntent(getContentIntent());
 		if (type == 1) {
 			PendingIntent restartIntent = ShoegazeUtilities.makeServiceIntent(context, ShoegazeReceiver.ACTION_RESTART);
 			builder.addAction(R.drawable.ic_launcher, "Restarting", restartIntent);
@@ -56,5 +58,10 @@ public class ShoegazeNotification extends BaseNotification {
 			   					context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS));
 		}
 		notificationManager.notify(ID, builder.build());
+		isShoegazing = true;
+	}
+	
+	public boolean IsShoegazing() {
+		return isShoegazing;
 	}
 }

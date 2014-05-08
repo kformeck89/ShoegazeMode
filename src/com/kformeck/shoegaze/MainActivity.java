@@ -2,6 +2,7 @@ package com.kformeck.shoegaze;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.notifications.ActivationNotification;
+import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -45,7 +46,9 @@ public class MainActivity extends Activity {
 					 .apply();
 				sendBroadcast(switchToggledIntent);
 				if (checked) {
-					ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
+					if (!ShoegazeNotification.getInstance().IsShoegazing()) {
+						ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
+					}
 				} else {
 					ActivationNotification.getInstance().cancelNotification();
 				}

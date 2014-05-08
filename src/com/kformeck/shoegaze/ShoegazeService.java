@@ -31,6 +31,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private static final int CAMERA_BACK = 0;
 	private static final int CAMERA_FRONT = 1;
 	private static final int NOTIFICATION_STARTED = 0;
+	private static final String WAKE_LOCK_TAG = "com.kformeck.shoegaze.wakeLock";
 	
 	public static final float ALPHA_MIN = 0.1f;
 	public static final float ALPHA_VERY_LOW = 0.2f;
@@ -51,6 +52,8 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private FrameLayout overlay;
 	private Camera camera;
 	private SharedPreferences sharedPrefs;
+	@SuppressWarnings("unused")
+	private PowerManager.WakeLock wakeLock;
 	private PowerManager powerManager;
 	private WindowManager windowManager;
 	
@@ -305,11 +308,14 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				R.string.pref_auto_flashlight_mode), isActive).commit();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onFaceDetection(Face[] faces, Camera camera) {
 		if ((faces != null) && (faces.length > 0)) {
 			if (!powerManager.isScreenOn() ) {
-				powerManager.wakeUp(SystemClock.uptimeMillis());
+				wakeLock = powerManager.newWakeLock(
+						PowerManager.SCREEN_BRIGHT_WAKE_LOCK, 
+						WAKE_LOCK_TAG);
 			} else {
 				setUserActivity();
 			}
