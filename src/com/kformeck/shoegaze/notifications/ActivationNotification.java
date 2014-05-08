@@ -44,6 +44,7 @@ public class ActivationNotification extends BaseNotification {
 			   .setSmallIcon(R.drawable.ic_launcher)
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1)
+			   .setPriority(Notification.PRIORITY_MAX)
 			   .setContentIntent(
 					   stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT));
 		if (type == 1) {
