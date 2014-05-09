@@ -117,7 +117,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		}
 		
 		resetViews();
-		//ShoegazeNotification.getInstance().cancelNotification();
 		ActivationNotification.getInstance().startNotification(context, 0);
 		ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
 		
@@ -256,7 +255,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		
 		toggleOnTheGoAlpha();
 		
-		//ActivationNotification.getInstance().cancelNotification();
 		ShoegazeNotification.getInstance().startNotification(context, NOTIFICATION_STARTED);
 	}
 	private void resetViews() {

@@ -3,6 +3,7 @@ package com.kformeck.shoegaze;
 import com.example.onthego.R;
 import com.kformeck.shoegaze.notifications.ActivationNotification;
 import com.kformeck.shoegaze.notifications.ShoegazeNotification;
+import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -44,13 +45,17 @@ public class MainActivity extends Activity {
 				prefs.edit()
 					 .putBoolean(getResources().getString(R.string.pref_app_state), checked)
 					 .apply();
-				sendBroadcast(switchToggledIntent);
 				if (checked) {
 					if (!ShoegazeNotification.getInstance().isShoegazing()) {
 						ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
 					}
 				} else {
-					//ActivationNotification.getInstance().cancelNotification();
+					if (ShoegazeNotification.getInstance().isShoegazing()) {
+						Intent stopIntent = new Intent(MainActivity.this, ShoegazeReceiver.class);
+						stopIntent.setAction(ShoegazeReceiver.ACTION_STOP);
+						sendBroadcast(stopIntent);
+					}
+					ShoegazeNotification.getInstance().cancelNotification();
 				}
 			}	
 		});
