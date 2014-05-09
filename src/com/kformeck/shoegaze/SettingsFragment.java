@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
 public class SettingsFragment extends PreferenceFragment {
+	IntentFilter filter;
 	final BroadcastReceiver receiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -25,8 +26,24 @@ public class SettingsFragment extends PreferenceFragment {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings_screen);
 		
-		IntentFilter filter = new IntentFilter(getResources().getString(
+		filter = new IntentFilter(getResources().getString(
 				R.string.action_shoegaze_state_toggled));
+	}
+	@Override
+	public void onStart() {
+		super.onStart();
 		getActivity().registerReceiver(receiver, filter);
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		getActivity().unregisterReceiver(receiver);
+	}
+	@Override
+	public void onDestroy() {
+		if (filter != null) {
+			filter = null;
+		}
+		super.onDestroy();
 	}
 }

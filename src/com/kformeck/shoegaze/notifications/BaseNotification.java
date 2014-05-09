@@ -10,8 +10,8 @@ import android.content.Intent;
 
 public abstract class BaseNotification {
 	protected final int ID = 81333378;
+	protected static NotificationManager notificationManager;
 	protected Context context;
-	protected NotificationManager notificationManager;
 	
 	protected PendingIntent getContentIntent() {
 		Intent mainActivityIntent = new Intent(context, MainActivity.class);
@@ -27,7 +27,6 @@ public abstract class BaseNotification {
 			notificationManager = (NotificationManager)context.getSystemService(
 					Context.NOTIFICATION_SERVICE);
 		}
-		notificationManager.cancel(ID);
 	}
 	public void cancelNotification() {
 		if (notificationManager != null) {

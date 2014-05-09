@@ -35,8 +35,6 @@ public class MainActivity extends Activity {
 		switchToggledIntent = new Intent(
 				getResources().getString(R.string.action_shoegaze_state_toggled));
 		
-		
-		// TODO: Make sure the master switch setting is reloaded properly
 		masterSwitch = (Switch)menu.findItem(
 				R.id.actionBarSwitch).getActionView().findViewById(R.id.masterSwitch);
 		masterSwitch.setChecked(
