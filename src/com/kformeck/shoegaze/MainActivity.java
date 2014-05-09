@@ -46,8 +46,7 @@ public class MainActivity extends Activity {
 					 .apply();
 				sendBroadcast(switchToggledIntent);
 				if (checked) {
-					ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
-					if (!ShoegazeNotification.getInstance().IsShoegazing()) {
+					if (!ShoegazeNotification.getInstance().isShoegazing()) {
 						ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
 					}
 				} else {

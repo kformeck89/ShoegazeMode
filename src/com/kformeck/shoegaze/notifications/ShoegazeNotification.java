@@ -60,8 +60,13 @@ public class ShoegazeNotification extends BaseNotification {
 		notificationManager.notify(ID, builder.build());
 		isShoegazing = true;
 	}
+	@Override
+	public void cancelNotification() {
+		super.cancelNotification();
+		isShoegazing = false;
+	}
 	
-	public boolean IsShoegazing() {
+	public boolean isShoegazing() {
 		return isShoegazing;
 	}
 }
