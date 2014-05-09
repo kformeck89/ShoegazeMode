@@ -1,4 +1,4 @@
-package com.kformeck.shoegaze;
+package com.kformeck.shoegaze.utilities;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-public class ShoegazeUtilities {
+public class ShoegazeUtils {
 	public static PendingIntent makeServiceIntent(Context context, String action) {
 		Intent intent = new Intent(context, ShoegazeReceiver.class);
 		intent.setAction(action);

@@ -6,6 +6,8 @@ import com.example.onthego.R;
 import com.kformeck.shoegaze.notifications.ActivationNotification;
 import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+import com.kformeck.shoegaze.utilities.DeviceUtils;
+import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -114,7 +116,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		resetViews();
 		ShoegazeNotification.getInstance().cancelNotification();
 		ActivationNotification.getInstance().startNotification(context, 0);
-		ShoegazeUtilities.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
+		ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
 		
 		super.onDestroy();
 	}

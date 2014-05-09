@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
 					 .apply();
 				sendBroadcast(switchToggledIntent);
 				if (checked) {
+					// TODO: don't start this if other notif is present
 					ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
 				} else {
 					ActivationNotification.getInstance().cancelNotification();

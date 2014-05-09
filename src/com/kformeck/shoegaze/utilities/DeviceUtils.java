@@ -1,4 +1,4 @@
-package com.kformeck.shoegaze;
+package com.kformeck.shoegaze.utilities;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

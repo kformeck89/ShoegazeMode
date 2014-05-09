@@ -2,6 +2,8 @@ package com.kformeck.shoegaze;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+import com.kformeck.shoegaze.utilities.DeviceUtils;
+import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -128,7 +130,7 @@ public class OptionsDialog {
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ShoegazeUtilities.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
+				ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
 				close();
 			}
 		});
