@@ -9,10 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 
 public abstract class BaseNotification {
+	protected final int ID = 81333378;
 	protected Context context;
 	protected NotificationManager notificationManager;
 	
-	protected abstract int getId();
 	protected PendingIntent getContentIntent() {
 		Intent mainActivityIntent = new Intent(context, MainActivity.class);
 		TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
@@ -27,11 +27,11 @@ public abstract class BaseNotification {
 			notificationManager = (NotificationManager)context.getSystemService(
 					Context.NOTIFICATION_SERVICE);
 		}
-		notificationManager.cancel(getId());
+		notificationManager.cancel(ID);
 	}
 	public void cancelNotification() {
 		if (notificationManager != null) {
-			notificationManager.cancel(getId());
+			notificationManager.cancel(ID);
 		}
 		if (context != null) {
 			context = null;

@@ -11,7 +11,6 @@ import android.content.Intent;
 
 public class ShoegazeNotification extends BaseNotification {
 	private static ShoegazeNotification instance;
-	private static final int ID = 81333378;
 	private boolean isShoegazing;
 	
 	public static ShoegazeNotification getInstance() {
@@ -22,10 +21,6 @@ public class ShoegazeNotification extends BaseNotification {
 	}
 	private ShoegazeNotification() { isShoegazing = false; }
 	
-	@Override
-	protected int getId() {
-		return ID;
-	}
 	@Override
 	public void startNotification(Context context, int type) {
 		super.startNotification(context, type);

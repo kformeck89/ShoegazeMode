@@ -10,7 +10,6 @@ import android.content.Context;
 
 public class ActivationNotification extends BaseNotification {
 	private static ActivationNotification instance;
-	private static final int ID = 81333398;
 	
 	public static ActivationNotification getInstance() {
 		if (instance == null) {
@@ -20,10 +19,6 @@ public class ActivationNotification extends BaseNotification {
 	}
 	private ActivationNotification() { }
 	
-	@Override
-	protected int getId() {
-		return ID;
-	}
 	@Override
 	public void startNotification(Context context, int type) {
 		super.startNotification(context, type);	

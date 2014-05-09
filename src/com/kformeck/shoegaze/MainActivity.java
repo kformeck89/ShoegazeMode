@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 						ActivationNotification.getInstance().startNotification(MainActivity.this, 0);
 					}
 				} else {
-					ActivationNotification.getInstance().cancelNotification();
+					//ActivationNotification.getInstance().cancelNotification();
 				}
 			}	
 		});
