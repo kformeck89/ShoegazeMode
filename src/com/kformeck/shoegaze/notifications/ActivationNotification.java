@@ -29,8 +29,6 @@ public class ActivationNotification extends BaseNotification {
 		super.startNotification(context, type);	
 		
 		Notification.Builder builder = new Notification.Builder(context);
-		
-		// TODO: fix ticker icon
 		builder.setTicker("Shoegaze Enabled")
 			   .setContentTitle("Shoegaze Mode")
 			   .setSmallIcon(R.drawable.ic_launcher)
