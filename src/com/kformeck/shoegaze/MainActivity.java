@@ -35,8 +35,12 @@ public class MainActivity extends Activity {
 		switchToggledIntent = new Intent(
 				getResources().getString(R.string.action_shoegaze_state_toggled));
 		
+		
+		// TODO: Make sure the master switch setting is reloaded properly
 		masterSwitch = (Switch)menu.findItem(
 				R.id.actionBarSwitch).getActionView().findViewById(R.id.masterSwitch);
+		masterSwitch.setChecked(
+				prefs.getBoolean(getResources().getString(R.string.pref_app_state), false));
 		masterSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean checked) {
@@ -59,8 +63,6 @@ public class MainActivity extends Activity {
 				}
 			}	
 		});
-		masterSwitch.setChecked(
-				prefs.getBoolean(getResources().getString(R.string.pref_app_state), false));
 		
 		switchToggledIntent.putExtra(
 				getResources().getString(R.string.extra_app_state), masterSwitch.isChecked());
