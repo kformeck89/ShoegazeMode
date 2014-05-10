@@ -1,6 +1,6 @@
 package com.kformeck.shoegaze.notifications;
 
-import com.kformeck.shoegaze.ui.MainActivity;
+import com.kformeck.shoegaze.ui.activities.MainActivity;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

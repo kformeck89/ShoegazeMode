@@ -1,4 +1,4 @@
-package com.kformeck.shoegaze.ui;
+package com.kformeck.shoegaze.ui.fragments;
 
 import com.example.onthego.R;
 

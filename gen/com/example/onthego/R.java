@@ -38,15 +38,16 @@ public final class R {
         public static final int options_overlay_shape=0x7f020005;
     }
     public static final class id {
-        public static final int actionBarSwitch=0x7f0b0008;
-        public static final int btnCancel=0x7f0b0006;
-        public static final int btnSave=0x7f0b0007;
-        public static final int masterSwitch=0x7f0b0000;
-        public static final int sliderAlpha=0x7f0b0003;
-        public static final int switchAutoflash=0x7f0b0005;
-        public static final int switchLightSensingMode=0x7f0b0001;
-        public static final int txtAlpha=0x7f0b0002;
-        public static final int txtAutoFlash=0x7f0b0004;
+        public static final int actionBarSwitch=0x7f0b0009;
+        public static final int btnCancel=0x7f0b0007;
+        public static final int btnSave=0x7f0b0008;
+        public static final int masterSwitch=0x7f0b0001;
+        public static final int pager=0x7f0b0000;
+        public static final int sliderAlpha=0x7f0b0004;
+        public static final int switchAutoflash=0x7f0b0006;
+        public static final int switchLightSensingMode=0x7f0b0002;
+        public static final int txtAlpha=0x7f0b0003;
+        public static final int txtAutoFlash=0x7f0b0005;
     }
     public static final class integer {
         public static final int brightness_high=0x7f070006;
@@ -60,8 +61,11 @@ public final class R {
         public static final int brightness_very_low=0x7f070001;
     }
     public static final class layout {
-        public static final int layout_menu_main=0x7f030000;
-        public static final int overlay_options=0x7f030001;
+        public static final int activity_help=0x7f030000;
+        public static final int fragment_getting_started=0x7f030001;
+        public static final int fragment_help=0x7f030002;
+        public static final int layout_menu_main=0x7f030003;
+        public static final int overlay_options=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;

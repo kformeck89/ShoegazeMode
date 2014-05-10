@@ -1,9 +1,10 @@
-package com.kformeck.shoegaze.ui;
+package com.kformeck.shoegaze.ui.activities;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.notifications.ActivationNotification;
 import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+import com.kformeck.shoegaze.ui.fragments.SettingsFragment;
 
 import android.os.Bundle;
 import android.app.Activity;
