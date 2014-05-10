@@ -1,7 +1,7 @@
 package com.kformeck.shoegaze.receivers;
 
-import com.kformeck.shoegaze.OptionsDialog;
-import com.kformeck.shoegaze.ShoegazeService;
+import com.kformeck.shoegaze.ui.OptionsDialog;
+import com.kformeck.shoegaze.ui.ShoegazeService;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

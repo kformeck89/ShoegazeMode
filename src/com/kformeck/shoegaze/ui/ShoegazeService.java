@@ -1,8 +1,9 @@
-package com.kformeck.shoegaze;
+package com.kformeck.shoegaze.ui;
 
 import java.io.IOException;
 
 import com.example.onthego.R;
+import com.kformeck.shoegaze.LightSensorManager;
 import com.kformeck.shoegaze.notifications.ActivationNotification;
 import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;

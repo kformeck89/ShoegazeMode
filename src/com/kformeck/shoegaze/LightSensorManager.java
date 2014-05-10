@@ -2,6 +2,7 @@ package com.kformeck.shoegaze;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+import com.kformeck.shoegaze.ui.ShoegazeService;
 import com.kformeck.shoegaze.utilities.DeviceUtils;
 
 import android.content.Context;
