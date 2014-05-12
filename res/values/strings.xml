@@ -12,8 +12,7 @@
     <string name="options_alpha">Alpha: </string>
 	<string name="options_auto_flash">Flash:</string>
     <string name="options_light_sensing_mode">Auto:</string>
-    
-    <string name="options_font_family">sans-serif-condensed</string>
+	<string name="options_font_family">sans-serif</string>
     <string name="action_bar_font_family">sans-serif</string>
     
     <string name="settings_group_settings">Settings</string>

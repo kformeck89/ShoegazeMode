@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/options_header_margin"
+        android:gravity="center_vertical|left"
         android:text="@string/options_header"
         android:textColor="@color/options_font_color"
         android:textSize="@dimen/options_header_textsize"
@@ -21,7 +22,7 @@
     
     <GridLayout 
 	    android:layout_width="match_parent"
-	    android:layout_height="150dp" >
+	    android:layout_height="@dimen/options_content_height" >
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -114,19 +115,19 @@
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/options_button_height"
             android:layout_weight="1"
             android:text="@string/options_cancel"
             android:textColor="@color/options_font_color"
-            style="@android:style/Widget.Holo.Button.Borderless"/>
+            style="?android:attr/buttonBarButtonStyle"/>
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/options_button_height"
             android:layout_weight="1"
             android:text="@string/options_save"
             android:textColor="@color/options_font_color"
-            style="@android:style/Widget.Holo.Button.Borderless"/>
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
     
 </LinearLayout>

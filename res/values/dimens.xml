@@ -7,8 +7,10 @@
     <dimen name="action_bar_text_size">18sp</dimen>
     
 	<dimen name="options_width">300dp</dimen>
-    <dimen name="options_height">260dp</dimen>
-    <dimen name="options_header_margin">10dp</dimen>
+    <dimen name="options_height">275dp</dimen>
+    <dimen name="options_content_height">148dp</dimen>
+    <dimen name="options_button_height">48dp</dimen>
+    <dimen name="options_header_margin">15dp</dimen>
     <dimen name="options_header_textsize">22sp</dimen>
     <dimen name="options_slider_width">150dp</dimen>
     <dimen name="options_overlay_corner_radius">15dp</dimen>
