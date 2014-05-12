@@ -2,6 +2,6 @@
 <resources>
     
     <color name="action_bar_font_color">@android:color/black</color>
-    <color name="options_font_color">@android:color/holo_blue_light</color>
+    <color name="options_font_color">@android:color/white</color>
     
 </resources>

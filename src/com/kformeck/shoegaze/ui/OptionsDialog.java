@@ -77,7 +77,7 @@ public class OptionsDialog {
 		overlay = ((LayoutInflater)context.getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.overlay_options, null, false);
 		overlay.setBackground(context.getResources().getDrawable(
-				R.drawable.options_overlay_shape));
+				android.R.drawable.dialog_holo_dark_frame));
 		overlay.setAlpha(1);
 		
 		Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
