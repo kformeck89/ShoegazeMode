@@ -105,7 +105,7 @@
 	
     <View 
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@color/options_font_color"/>
 	
     <LinearLayout
@@ -120,6 +120,10 @@
             android:text="@string/options_cancel"
             android:textColor="@color/options_font_color"
             style="?android:attr/buttonBarButtonStyle"/>
+        <View 
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/options_font_color"/>
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
