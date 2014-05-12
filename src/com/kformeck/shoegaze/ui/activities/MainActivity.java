@@ -33,9 +33,6 @@ public class MainActivity extends Activity {
 		final SharedPreferences prefs = getSharedPreferences(
 				getResources().getString(R.string.shoegaze_prefs), MODE_PRIVATE);
 		
-		switchToggledIntent = new Intent(
-				getResources().getString(R.string.action_shoegaze_state_toggled));
-		
 		masterSwitch = (Switch)menu.findItem(
 				R.id.actionBarSwitch).getActionView().findViewById(R.id.masterSwitch);
 		masterSwitch.setChecked(
@@ -43,6 +40,8 @@ public class MainActivity extends Activity {
 		masterSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean checked) {
+				switchToggledIntent = new Intent(
+						getResources().getString(R.string.action_shoegaze_state_toggled));
 				switchToggledIntent.putExtra(
 						getResources().getString(R.string.extra_app_state), checked);
 				prefs.edit()
@@ -60,13 +59,9 @@ public class MainActivity extends Activity {
 					}
 					ShoegazeNotification.getInstance().cancelNotification();
 				}
+				sendBroadcast(switchToggledIntent);
 			}	
-		});
-		
-		switchToggledIntent.putExtra(
-				getResources().getString(R.string.extra_app_state), masterSwitch.isChecked());
-		sendBroadcast(switchToggledIntent);
-		
+		});		
 		return super.onCreateOptionsMenu(menu);
 	}
 }
