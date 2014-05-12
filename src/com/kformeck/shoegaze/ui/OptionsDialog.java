@@ -65,8 +65,8 @@ public class OptionsDialog {
 		
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);		
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-				WindowManager.LayoutParams.WRAP_CONTENT,
-				WindowManager.LayoutParams.WRAP_CONTENT,
+				(int)context.getResources().getDimension(R.dimen.options_width),
+				(int)context.getResources().getDimension(R.dimen.options_height),
 				WindowManager.LayoutParams.TYPE_SYSTEM_ERROR,
 				WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON |
 				WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
@@ -144,6 +144,8 @@ public class OptionsDialog {
 		rearrangeUi(isAutoModeOn ? UiMode.AUTO : UiMode.MANUAL);
 		lsmSwitch.setChecked(isAutoModeOn);
 		alphaSlider.setProgress((int)userAlpha);
+		
+		
 		
 		windowManager.addView(overlay, params);
 	}	
