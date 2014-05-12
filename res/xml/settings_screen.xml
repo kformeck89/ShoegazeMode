@@ -10,7 +10,7 @@
     <PreferenceCategory android:title="@string/settings_group_general">
 		<Preference android:title="@string/settings_help_title">
 		    <intent 
-		        android:targetPackage="com.kformeck.shoegaze.ui.activities"
+		        android:targetPackage="com.example.onthego"
 		        android:targetClass="com.kformeck.shoegaze.ui.activities.HelpActivity"/>
 		</Preference>
 		<PreferenceScreen android:title="@string/settings_about_title"/>

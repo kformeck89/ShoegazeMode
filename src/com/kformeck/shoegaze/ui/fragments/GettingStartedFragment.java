@@ -11,6 +11,7 @@ public class GettingStartedFragment extends Fragment {
 	@Override
 	public View onCreateView(
 			LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_getting_started, container, false);
+		setRetainInstance(true);
+		return inflater.inflate(R.layout.fragment_getting_started, null, false);
 	}
 }

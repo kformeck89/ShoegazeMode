@@ -5,26 +5,50 @@ import java.util.List;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.ui.fragments.GettingStartedFragment;
+import com.kformeck.shoegaze.ui.fragments.HelpFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class HelpActivity extends FragmentActivity {
-	private List<Fragment> fragmentList;
+public class HelpActivity extends FragmentActivity {	
+	private class ViewPagerContainer {
+		private Fragment fragment;
+		private String title;
+		
+		public ViewPagerContainer(Fragment fragment, String title) {
+			this.fragment = fragment;
+			this.title = title;
+		}
+		
+		public Fragment getFragment() {
+			return fragment;
+		}
+		public String getTitle() {
+			return title;
+		}
+	}
+	private class HelpPagerAdapter extends FragmentStatePagerAdapter {
+		private List<ViewPagerContainer> fragmentContainer;
 	
-	private class HelpPagerAdapter extends FragmentPagerAdapter {
-		public HelpPagerAdapter(FragmentManager fm) {
-			super(fm);
+		public HelpPagerAdapter(FragmentManager fragmentManager, List<ViewPagerContainer> fragmentContainer) {
+			super(fragmentManager);
+			this.fragmentContainer = fragmentContainer;
 		}
 		@Override
-		public int getCount() { return 3; }
+		public String getPageTitle(int position) {
+			return fragmentContainer.get(position).getTitle();
+		}
+		@Override
+		public int getCount() {
+			return fragmentContainer.size();
+		}
 		@Override
 		public Fragment getItem(int position) {
-			return fragmentList.get(position);
+			return fragmentContainer.get(position).getFragment();
 		}
 	}
 	
@@ -33,10 +57,15 @@ public class HelpActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 		
-		fragmentList = new ArrayList<Fragment>();
-		fragmentList.add(new GettingStartedFragment());
+		List<ViewPagerContainer> fragmentContainer = new ArrayList<ViewPagerContainer>();
+		fragmentContainer.add(new ViewPagerContainer(
+				new GettingStartedFragment(), "Getting Started"));
+		fragmentContainer.add(new ViewPagerContainer(new HelpFragment(), "Help"));
 		
 		ViewPager pager = (ViewPager)findViewById(R.id.pager);
-		pager.setAdapter(new HelpPagerAdapter(getSupportFragmentManager()));
+		pager.setOffscreenPageLimit(2);
+		pager.setAdapter(new HelpPagerAdapter(
+				getSupportFragmentManager(), 
+				fragmentContainer));
 	}
 }
