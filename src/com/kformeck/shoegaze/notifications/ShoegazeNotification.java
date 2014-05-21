@@ -28,7 +28,7 @@ public class ShoegazeNotification extends BaseNotification {
 		Notification.Builder builder = new Notification.Builder(context);
 		builder.setTicker("Shoegaze Mode Active")
 			   .setContentTitle("Shoegazing...")
-			   .setSmallIcon(R.drawable.ic_launcher)
+			   .setSmallIcon(R.drawable.ic_notification_running)
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1)
 			   .setPriority(Notification.PRIORITY_MAX)

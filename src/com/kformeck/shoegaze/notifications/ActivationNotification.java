@@ -26,7 +26,7 @@ public class ActivationNotification extends BaseNotification {
 		Notification.Builder builder = new Notification.Builder(context);
 		builder.setTicker("Shoegaze Enabled")
 			   .setContentTitle("Shoegaze Mode")
-			   .setSmallIcon(R.drawable.ic_launcher)
+			   .setSmallIcon(R.drawable.ic_notification_stopped)
 			   .setWhen(System.currentTimeMillis())
 			   .setOngoing(type != 1)
 			   .setPriority(Notification.PRIORITY_MAX)

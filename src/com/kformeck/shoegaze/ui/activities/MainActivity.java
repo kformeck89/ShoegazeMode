@@ -33,6 +33,8 @@ public class MainActivity extends Activity {
 		final SharedPreferences prefs = getSharedPreferences(
 				getResources().getString(R.string.shoegaze_prefs), MODE_PRIVATE);
 		
+		getActionBar().setIcon(R.drawable.ic_action_bar);
+		
 		masterSwitch = (Switch)menu.findItem(
 				R.id.actionBarSwitch).getActionView().findViewById(R.id.masterSwitch);
 		masterSwitch.setChecked(
