@@ -74,9 +74,11 @@ public final class R {
     public static final class string {
         public static final int action_bar_font_family=0x7f08000a;
         public static final int action_help=0x7f080002;
-        public static final int action_shoegaze_state_toggled=0x7f080019;
+        public static final int action_shoegaze_state_toggled=0x7f08001b;
         public static final int app_name=0x7f080000;
-        public static final int extra_app_state=0x7f08001a;
+        public static final int extra_app_state=0x7f08001c;
+        public static final int help_getting_started_title=0x7f080013;
+        public static final int help_in_depth_title=0x7f080014;
         public static final int master_switch_title=0x7f080001;
         public static final int options_alpha=0x7f080006;
         public static final int options_auto_flash=0x7f080007;
@@ -85,11 +87,11 @@ public final class R {
         public static final int options_header=0x7f080003;
         public static final int options_light_sensing_mode=0x7f080008;
         public static final int options_save=0x7f080004;
-        public static final int pref_app_state=0x7f080014;
-        public static final int pref_auto_flashlight_mode=0x7f080018;
-        public static final int pref_camera_type=0x7f080016;
-        public static final int pref_light_sensing_mode=0x7f080017;
-        public static final int pref_user_alpha=0x7f080015;
+        public static final int pref_app_state=0x7f080016;
+        public static final int pref_auto_flashlight_mode=0x7f08001a;
+        public static final int pref_camera_type=0x7f080018;
+        public static final int pref_light_sensing_mode=0x7f080019;
+        public static final int pref_user_alpha=0x7f080017;
         public static final int settings_about_title=0x7f080010;
         public static final int settings_changelog_title=0x7f080011;
         public static final int settings_group_general=0x7f08000c;
@@ -98,7 +100,7 @@ public final class R {
         public static final int settings_key_onboot=0x7f080012;
         public static final int settings_onboot_summary=0x7f08000e;
         public static final int settings_onboot_title=0x7f08000d;
-        public static final int shoegaze_prefs=0x7f080013;
+        public static final int shoegaze_prefs=0x7f080015;
     }
     public static final class style {
         public static final int ActionBarTheme=0x7f090002;

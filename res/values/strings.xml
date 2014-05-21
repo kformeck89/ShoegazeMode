@@ -24,6 +24,9 @@
     <string name="settings_changelog_title">Changelog</string>
     <string name="settings_key_onboot">chkOnBoot</string>
     
+    <string name="help_getting_started_title">Getting Started</string>
+    <string name="help_in_depth_title">In Depth</string>
+    
     <string name="shoegaze_prefs">com.kformeck.shoegaze.APP_PREFS</string>
     <string name="pref_app_state">com.kformeck.shoegaze.prefs.APP_STATE</string>
     <string name="pref_user_alpha">com.kformeck.shoegaze.prefs.USER_ALPHA</string>
