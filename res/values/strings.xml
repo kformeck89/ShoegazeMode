@@ -25,6 +25,15 @@
     <string name="settings_key_onboot">chkOnBoot</string>
     
     <string name="help_getting_started_title">Getting Started</string>
+    <string name="help_getting_start_step_one">Toggle the switch in the action bar</string>
+    <string name="help_getting_started_step_one_desc">Step One</string>
+    <string name="help_getting_start_step_two">Tap the start button in the notification</string>
+    <string name="help_getting_started_step_two_desc">Step Two</string>
+    <string name="help_getting_started_step_three_title">Quick Details:</string>
+    <string name="help_getting_started_step_three_a">1.) Stop shoegazing</string>
+    <string name="help_getting_started_step_three_b">2.) Switch cameras</string>
+    <string name="help_getting_started_step_three_c">3.) Open options</string>
+    <string name="help_getting_started_step_three_desc">Step Three</string>
     <string name="help_in_depth_title">In Depth</string>
     
     <string name="shoegaze_prefs">com.kformeck.shoegaze.APP_PREFS</string>

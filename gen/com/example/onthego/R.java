@@ -32,14 +32,17 @@ public final class R {
         public static final int options_width=0x7f060003;
     }
     public static final class drawable {
-        public static final int ic_action_bar=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_notification_running=0x7f020002;
-        public static final int ic_notification_stopped=0x7f020003;
-        public static final int ic_options=0x7f020004;
-        public static final int ic_start=0x7f020005;
-        public static final int ic_stop=0x7f020006;
-        public static final int ic_switch_camera=0x7f020007;
+        public static final int getting_started_step_one=0x7f020000;
+        public static final int getting_started_step_three=0x7f020001;
+        public static final int getting_started_step_two=0x7f020002;
+        public static final int ic_action_bar=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int ic_notification_running=0x7f020005;
+        public static final int ic_notification_stopped=0x7f020006;
+        public static final int ic_options=0x7f020007;
+        public static final int ic_start=0x7f020008;
+        public static final int ic_stop=0x7f020009;
+        public static final int ic_switch_camera=0x7f02000a;
     }
     public static final class id {
         public static final int actionBarSwitch=0x7f0b0009;
@@ -77,11 +80,20 @@ public final class R {
     public static final class string {
         public static final int action_bar_font_family=0x7f08000a;
         public static final int action_help=0x7f080002;
-        public static final int action_shoegaze_state_toggled=0x7f08001b;
+        public static final int action_shoegaze_state_toggled=0x7f080024;
         public static final int app_name=0x7f080000;
-        public static final int extra_app_state=0x7f08001c;
+        public static final int extra_app_state=0x7f080025;
+        public static final int help_getting_start_step_one=0x7f080014;
+        public static final int help_getting_start_step_two=0x7f080016;
+        public static final int help_getting_started_step_one_desc=0x7f080015;
+        public static final int help_getting_started_step_three_a=0x7f080019;
+        public static final int help_getting_started_step_three_b=0x7f08001a;
+        public static final int help_getting_started_step_three_c=0x7f08001b;
+        public static final int help_getting_started_step_three_desc=0x7f08001c;
+        public static final int help_getting_started_step_three_title=0x7f080018;
+        public static final int help_getting_started_step_two_desc=0x7f080017;
         public static final int help_getting_started_title=0x7f080013;
-        public static final int help_in_depth_title=0x7f080014;
+        public static final int help_in_depth_title=0x7f08001d;
         public static final int master_switch_title=0x7f080001;
         public static final int options_alpha=0x7f080006;
         public static final int options_auto_flash=0x7f080007;
@@ -90,11 +102,11 @@ public final class R {
         public static final int options_header=0x7f080003;
         public static final int options_light_sensing_mode=0x7f080008;
         public static final int options_save=0x7f080004;
-        public static final int pref_app_state=0x7f080016;
-        public static final int pref_auto_flashlight_mode=0x7f08001a;
-        public static final int pref_camera_type=0x7f080018;
-        public static final int pref_light_sensing_mode=0x7f080019;
-        public static final int pref_user_alpha=0x7f080017;
+        public static final int pref_app_state=0x7f08001f;
+        public static final int pref_auto_flashlight_mode=0x7f080023;
+        public static final int pref_camera_type=0x7f080021;
+        public static final int pref_light_sensing_mode=0x7f080022;
+        public static final int pref_user_alpha=0x7f080020;
         public static final int settings_about_title=0x7f080010;
         public static final int settings_changelog_title=0x7f080011;
         public static final int settings_group_general=0x7f08000c;
@@ -103,7 +115,7 @@ public final class R {
         public static final int settings_key_onboot=0x7f080012;
         public static final int settings_onboot_summary=0x7f08000e;
         public static final int settings_onboot_title=0x7f08000d;
-        public static final int shoegaze_prefs=0x7f080015;
+        public static final int shoegaze_prefs=0x7f08001e;
     }
     public static final class style {
         public static final int ActionBarTheme=0x7f090002;
