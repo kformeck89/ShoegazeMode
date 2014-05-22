@@ -59,8 +59,10 @@ public class HelpActivity extends FragmentActivity {
 		
 		List<ViewPagerContainer> fragmentContainer = new ArrayList<ViewPagerContainer>();
 		fragmentContainer.add(new ViewPagerContainer(
-				new GettingStartedFragment(), "Getting Started"));
-		fragmentContainer.add(new ViewPagerContainer(new HelpFragment(), "Help"));
+				new GettingStartedFragment(),
+				getResources().getString(R.string.help_getting_started_title)));
+		fragmentContainer.add(new ViewPagerContainer(new HelpFragment(),
+				getResources().getString(R.string.help_in_depth_title)));
 		
 		ViewPager pager = (ViewPager)findViewById(R.id.pager);
 		pager.setOffscreenPageLimit(2);
