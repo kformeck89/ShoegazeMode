@@ -31,7 +31,7 @@ public class LightSensorManager implements SensorEventListener {
 	public void start() {
 		manager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
 		sensor = (Sensor)manager.getDefaultSensor(Sensor.TYPE_LIGHT);
-		manager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+		manager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
 	}
 	public void cancel() {
 		if (manager != null) {

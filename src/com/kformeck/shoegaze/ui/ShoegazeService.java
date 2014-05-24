@@ -36,15 +36,13 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private static final int NOTIFICATION_STARTED = 0;
 	private static final String WAKE_LOCK_TAG = "com.kformeck.shoegaze.wakeLock";
 	
-	public static final float ALPHA_MIN = 0.1f;
-	public static final float ALPHA_VERY_LOW = 0.2f;
-	public static final float ALPHA_LOW = 0.3f;
-	public static final float ALPHA_MEDIUM_LOW = 0.4f;
-	public static final float ALPHA_MEDIUM = 0.5f;
-	public static final float ALPHA_MEDIUM_HIGH = 0.6f;
-	public static final float ALPHA_HIGH = 0.7f;
-	public static final float ALPHA_VERY_HIGH = 0.8f;
-	public static final float ALPHA_MAX = 0.9f;
+	public static final float ALPHA_MIN = 0.24f;
+	public static final float ALPHA_LOW = 0.32f;
+	public static final float ALPHA_MEDIUM_LOW = 0.40f;
+	public static final float ALPHA_MEDIUM = 0.48f;
+	public static final float ALPHA_MEDIUM_HIGH = 0.56f;
+	public static final float ALPHA_HIGH = 0.64f;
+	public static final float ALPHA_MAX = 0.72f;
 	
 	private int cameraType;
 	private float userAlpha;
