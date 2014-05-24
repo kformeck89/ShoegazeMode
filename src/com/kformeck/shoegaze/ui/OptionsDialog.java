@@ -2,7 +2,6 @@ package com.kformeck.shoegaze.ui;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
-import com.kformeck.shoegaze.utilities.DeviceUtils;
 import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 
 import android.content.Context;
@@ -22,10 +21,8 @@ import android.widget.Switch;
 public class OptionsDialog {
 	private static OptionsDialog instance;
 	
-	private boolean autoBrightnessWasOn;
 	private boolean isAutoModeOn;
 	private boolean isAutoFlashOn;
-	private int prvBrightnessLevel;
 	private float userAlpha;
 	
 	private Context context;
@@ -48,8 +45,6 @@ public class OptionsDialog {
 	}
 	private OptionsDialog(Context context) {
 		this.context = context;
-		retreiveBrightnessSettings();
-		
 		sharedPrefs = context.getSharedPreferences(
 				context.getResources().getString(R.string.shoegaze_prefs), Context.MODE_PRIVATE);
 	}
@@ -91,18 +86,11 @@ public class OptionsDialog {
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (isChecked) {
 					isAutoModeOn = true;
-					rearrangeUi(UiMode.AUTO);
-					retreiveBrightnessSettings();
-					DeviceUtils.setAutoBrightness(context, false);					
+					rearrangeUi(UiMode.AUTO);					
 				} else {
 					isAutoModeOn = false;
 					isAutoFlashOn = false;
-					rearrangeUi(UiMode.MANUAL);
-					if (autoBrightnessWasOn) {
-						DeviceUtils.setAutoBrightness(context, true);
-					} else {
-						DeviceUtils.setBrightnessLevel(context, prvBrightnessLevel);
-					}					
+					rearrangeUi(UiMode.MANUAL);					
 				}
 				sendLsmBroadcast(isChecked);
 			}	
@@ -170,10 +158,6 @@ public class OptionsDialog {
 		lsmBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
 		lsmBroadcast.putExtra(ShoegazeReceiver.EXTRA_LSM, value);
 		context.sendBroadcast(lsmBroadcast);
-	}
-	private void retreiveBrightnessSettings() {
-		autoBrightnessWasOn = DeviceUtils.isAutoBrightnessOn(context);
-		prvBrightnessLevel = DeviceUtils.getBrightnessLevel(context);
 	}
 	private void close() {
 		if (windowManager != null) {
