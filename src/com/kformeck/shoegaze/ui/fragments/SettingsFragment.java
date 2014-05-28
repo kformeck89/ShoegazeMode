@@ -25,7 +25,6 @@ public class SettingsFragment extends PreferenceFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings_screen);
-		
 		filter = new IntentFilter(getResources().getString(
 				R.string.action_shoegaze_state_toggled));
 	}

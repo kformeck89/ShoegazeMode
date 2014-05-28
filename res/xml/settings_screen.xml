@@ -13,7 +13,11 @@
 		        android:targetPackage="com.example.onthego"
 		        android:targetClass="com.kformeck.shoegaze.ui.activities.HelpActivity"/>
 		</Preference>
-		<PreferenceScreen android:title="@string/settings_about_title"/>
+		<Preference android:title="@string/settings_about_title">
+		    <intent
+		        android:targetPackage="com.example.onthego"
+		        android:targetClass="com.kformeck.shoegaze.ui.activities.AboutActivity"/>
+		</Preference>
 		<PreferenceScreen android:title="@string/settings_changelog_title"/>
     </PreferenceCategory>
 </PreferenceScreen>

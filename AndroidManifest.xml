@@ -32,6 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.kformeck.shoegaze.ui.activities.HelpActivity"/>
+        <activity android:name="com.kformeck.shoegaze.ui.activities.AboutActivity"/>
         <service android:name="com.kformeck.shoegaze.ui.ShoegazeService"/>
         <receiver android:name="com.kformeck.shoegaze.receivers.ShoegazeReceiver"/>
         <receiver android:name="com.kformeck.shoegaze.receivers.OnBootReceiver">

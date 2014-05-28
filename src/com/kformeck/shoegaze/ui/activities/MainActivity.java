@@ -1,19 +1,19 @@
 package com.kformeck.shoegaze.ui.activities;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.Menu;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Switch;
+
 import com.example.onthego.R;
 import com.kformeck.shoegaze.notifications.ActivationNotification;
 import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 import com.kformeck.shoegaze.ui.fragments.SettingsFragment;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.view.Menu;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Switch;
 
 public class MainActivity extends Activity {
 	private Switch masterSwitch;

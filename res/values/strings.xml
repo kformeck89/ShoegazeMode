@@ -6,13 +6,15 @@
     <string name="master_switch_title">Toggle Shoegaze Mode</string>
     <string name="action_help">Help</string>
     
+    <string name="font_roboto_regular">sans-serif</string>
+    
     <string name="options_header">Shoegaze Settings</string>
     <string name="options_save">Save</string>
     <string name="options_cancel">Cancel</string>
     <string name="options_alpha">Alpha: </string>
 	<string name="options_auto_flash">Flash:</string>
     <string name="options_light_sensing_mode">Auto:</string>
-	<string name="options_font_family">sans-serif</string>
+	
     <string name="action_bar_font_family">sans-serif</string>
     
     <string name="settings_group_settings">Settings</string>
@@ -35,6 +37,13 @@
     <string name="help_getting_started_step_three_c">3.) Open options</string>
     <string name="help_getting_started_step_three_desc">Step Three</string>
     <string name="help_in_depth_title">In Depth</string>
+    
+    <string name="about_credits_title">Credits</string>
+    <string name="about_user_image_desc">G+ Default</string>
+    <string name="about_credits_developer_name">Kyle Formeck</string>
+    <string name="about_credits_developer_summary">Developer</string>
+    <string name="about_credits_filip_name">Filip Cernak</string>
+    <string name="about_credits_filip_summary">Icon design, UI and UX suggestions</string>
     
     <string name="shoegaze_prefs">com.kformeck.shoegaze.APP_PREFS</string>
     <string name="pref_app_state">com.kformeck.shoegaze.prefs.APP_STATE</string>

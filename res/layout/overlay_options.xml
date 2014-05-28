@@ -13,7 +13,7 @@
         android:text="@string/options_header"
         android:textColor="@color/options_font_color"
         android:textSize="@dimen/options_header_textsize"
-        android:fontFamily="@string/options_font_family"/>
+        android:fontFamily="@string/font_roboto_regular"/>
     
     <View 
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
 	        android:layout_row="0"
 	        android:text="@string/options_light_sensing_mode"
 	        android:textColor="@color/options_font_color"
-	        android:fontFamily="@string/options_font_family" />
+	        android:fontFamily="@string/font_roboto_regular" />
 	    <Switch
 	        android:id="@+id/switchLightSensingMode"
 	        android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
 	        android:visibility="visible"
 	        android:text="@string/options_alpha"
 	        android:textColor="@color/options_font_color"
-	        android:fontFamily="@string/options_font_family" />
+	        android:fontFamily="@string/font_roboto_regular" />
 	    <SeekBar
 	        android:id="@+id/sliderAlpha"
 	        android:layout_width="@dimen/options_slider_width"
@@ -88,7 +88,7 @@
 	        android:visibility="gone"
 	        android:text="@string/options_auto_flash"
 	        android:textColor="@color/options_font_color"
-	        android:fontFamily="@string/options_font_family" />
+	        android:fontFamily="@string/font_roboto_regular" />
 	    <Switch
 	        android:id="@+id/switchAutoflash"
 	        android:layout_width="wrap_content"

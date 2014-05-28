@@ -21,5 +21,29 @@
     <style name="ActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@android:color/holo_blue_light</item>
     </style>
-
+    
+    <!-- TextView Styles -->
+    <style name="TextViewBaseStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="TitleTextViewBaseStyle" parent="@style/TextViewBaseStyle">
+        <item name="android:textSize">@dimen/about_title_text_size</item>
+        <item name="android:fontFamily">"@string/font_roboto_regular"</item>
+    </style>
+    <style name="CardHeaderTextViewStyle" parent="@style/TitleTextViewBaseStyle">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">@color/card_details_color</item>
+    </style>
+    <style name="CardTitleTextViewStyle" parent="@style/TitleTextViewBaseStyle">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/card_details_color</item>
+    </style>
+    <style name="CardSummaryTextViewStyle" parent="@style/TextViewBaseStyle">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textSize">@dimen/about_summary_text_size</item>
+        <item name="android:textColor">@color/card_details_color</item>
+        <item name="android:fontFamily">"@string/font_roboto_regular"</item>
+    </style>
+    
 </resources>
