@@ -19,14 +19,15 @@ public final class R {
     public static final class dimen {
         public static final int about_summary_text_size=0x7f06000e;
         public static final int about_title_text_size=0x7f06000d;
+        public static final int about_user_image_border_thickness=0x7f060010;
         public static final int about_user_image_size=0x7f06000f;
         public static final int action_bar_text_size=0x7f060002;
         /**  Default screen margins, per the Android Design guidelines. 
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
-        public static final int card_margin_side=0x7f060010;
-        public static final int card_margin_tb=0x7f060011;
+        public static final int card_margin_side=0x7f060011;
+        public static final int card_margin_tb=0x7f060012;
         public static final int options_button_height=0x7f060006;
         public static final int options_content_height=0x7f060005;
         public static final int options_header_margin=0x7f060007;
@@ -55,16 +56,19 @@ public final class R {
         public static final int user_image_me=0x7f02000d;
     }
     public static final class id {
-        public static final int actionBarSwitch=0x7f0b0009;
-        public static final int btnCancel=0x7f0b0007;
-        public static final int btnSave=0x7f0b0008;
-        public static final int masterSwitch=0x7f0b0001;
-        public static final int pager=0x7f0b0000;
-        public static final int sliderAlpha=0x7f0b0004;
-        public static final int switchAutoflash=0x7f0b0006;
-        public static final int switchLightSensingMode=0x7f0b0002;
-        public static final int txtAlpha=0x7f0b0003;
-        public static final int txtAutoFlash=0x7f0b0005;
+        public static final int actionBarSwitch=0x7f0b000c;
+        public static final int btnCancel=0x7f0b000a;
+        public static final int btnSave=0x7f0b000b;
+        public static final int masterSwitch=0x7f0b0004;
+        public static final int pager=0x7f0b0003;
+        public static final int sliderAlpha=0x7f0b0007;
+        public static final int switchAutoflash=0x7f0b0009;
+        public static final int switchLightSensingMode=0x7f0b0005;
+        public static final int txtAlpha=0x7f0b0006;
+        public static final int txtAutoFlash=0x7f0b0008;
+        public static final int txtVersion=0x7f0b0000;
+        public static final int user_filip=0x7f0b0002;
+        public static final int user_me=0x7f0b0001;
     }
     public static final class integer {
         public static final int brightness_high=0x7f070006;
@@ -89,17 +93,18 @@ public final class R {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
-        public static final int about_credits_developer_name=0x7f080020;
-        public static final int about_credits_developer_summary=0x7f080021;
-        public static final int about_credits_filip_name=0x7f080022;
-        public static final int about_credits_filip_summary=0x7f080023;
+        public static final int about_credits_developer_name=0x7f080021;
+        public static final int about_credits_developer_summary=0x7f080022;
+        public static final int about_credits_filip_name=0x7f080023;
+        public static final int about_credits_filip_summary=0x7f080024;
         public static final int about_credits_title=0x7f08001e;
-        public static final int about_user_image_desc=0x7f08001f;
+        public static final int about_user_image_desc=0x7f080020;
+        public static final int about_version_title=0x7f08001f;
         public static final int action_bar_font_family=0x7f08000a;
         public static final int action_help=0x7f080002;
-        public static final int action_shoegaze_state_toggled=0x7f08002a;
+        public static final int action_shoegaze_state_toggled=0x7f08002b;
         public static final int app_name=0x7f080000;
-        public static final int extra_app_state=0x7f08002b;
+        public static final int extra_app_state=0x7f08002c;
         public static final int font_roboto_regular=0x7f080003;
         public static final int help_getting_start_step_one=0x7f080014;
         public static final int help_getting_start_step_two=0x7f080016;
@@ -119,11 +124,11 @@ public final class R {
         public static final int options_header=0x7f080004;
         public static final int options_light_sensing_mode=0x7f080009;
         public static final int options_save=0x7f080005;
-        public static final int pref_app_state=0x7f080025;
-        public static final int pref_auto_flashlight_mode=0x7f080029;
-        public static final int pref_camera_type=0x7f080027;
-        public static final int pref_light_sensing_mode=0x7f080028;
-        public static final int pref_user_alpha=0x7f080026;
+        public static final int pref_app_state=0x7f080026;
+        public static final int pref_auto_flashlight_mode=0x7f08002a;
+        public static final int pref_camera_type=0x7f080028;
+        public static final int pref_light_sensing_mode=0x7f080029;
+        public static final int pref_user_alpha=0x7f080027;
         public static final int settings_about_title=0x7f080010;
         public static final int settings_changelog_title=0x7f080011;
         public static final int settings_group_general=0x7f08000c;
@@ -132,7 +137,7 @@ public final class R {
         public static final int settings_key_onboot=0x7f080012;
         public static final int settings_onboot_summary=0x7f08000e;
         public static final int settings_onboot_title=0x7f08000d;
-        public static final int shoegaze_prefs=0x7f080024;
+        public static final int shoegaze_prefs=0x7f080025;
     }
     public static final class style {
         public static final int ActionBarTheme=0x7f090002;

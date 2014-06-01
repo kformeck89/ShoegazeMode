@@ -19,7 +19,9 @@
     
     <dimen name="about_title_text_size">22sp</dimen>
     <dimen name="about_summary_text_size">18sp</dimen>
-    <dimen name="about_user_image_size">68dp</dimen>
+    
+    <dimen name="about_user_image_size">72dp</dimen>
+    <dimen name="about_user_image_border_thickness">2dp</dimen>
     
     <dimen name="card_margin_side">6dp</dimen>
     <dimen name="card_margin_tb">4dp</dimen>
