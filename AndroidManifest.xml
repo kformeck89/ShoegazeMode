@@ -31,8 +31,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kformeck.shoegaze.ui.activities.HelpActivity"/>
-        <activity android:name="com.kformeck.shoegaze.ui.activities.AboutActivity"/>
+        <activity
+            android:name="com.kformeck.shoegaze.ui.activities.HelpActivity"
+            android:parentActivityName="com.kformeck.shoegaze.ui.activities.MainActivity"/>
+        <activity
+            android:name="com.kformeck.shoegaze.ui.activities.AboutActivity"
+            android:parentActivityName="com.kformeck.shoegaze.ui.activities.MainActivity"/>
         <service android:name="com.kformeck.shoegaze.ui.ShoegazeService"/>
         <receiver android:name="com.kformeck.shoegaze.receivers.ShoegazeReceiver"/>
         <receiver android:name="com.kformeck.shoegaze.receivers.OnBootReceiver">

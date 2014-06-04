@@ -3,16 +3,17 @@ package com.kformeck.shoegaze.ui.activities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.onthego.R;
-import com.kformeck.shoegaze.ui.fragments.GettingStartedFragment;
-import com.kformeck.shoegaze.ui.fragments.HelpFragment;
-
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+
+import com.example.onthego.R;
+import com.kformeck.shoegaze.ui.fragments.GettingStartedFragment;
+import com.kformeck.shoegaze.ui.fragments.HelpFragment;
 
 public class HelpActivity extends FragmentActivity {	
 	private class ViewPagerContainer {
@@ -56,6 +57,12 @@ public class HelpActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
+		
+		ActionBar actionBar = getActionBar();
+		actionBar.setIcon(R.drawable.ic_action_bar);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setTitle(getResources().getString(R.string.help_activity_title));
 		
 		List<ViewPagerContainer> fragmentContainer = new ArrayList<ViewPagerContainer>();
 		fragmentContainer.add(new ViewPagerContainer(

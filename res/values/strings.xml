@@ -25,6 +25,7 @@
     <string name="settings_changelog_title">Changelog</string>
     <string name="settings_key_onboot">chkOnBoot</string>
     
+    <string name="help_activity_title">Help</string>
     <string name="help_getting_started_title">Getting Started</string>
     <string name="help_getting_start_step_one">Toggle the switch in the action bar</string>
     <string name="help_getting_started_step_one_desc">Step One</string>
