@@ -17,17 +17,21 @@ public final class R {
         public static final int options_font_color=0x7f050001;
     }
     public static final class dimen {
-        public static final int about_summary_text_size=0x7f06000e;
-        public static final int about_title_text_size=0x7f06000d;
-        public static final int about_user_image_border_thickness=0x7f060010;
-        public static final int about_user_image_size=0x7f06000f;
+        public static final int about_summary_text_size=0x7f060012;
+        public static final int about_title_text_size=0x7f060011;
+        public static final int about_user_image_border_thickness=0x7f060014;
+        public static final int about_user_image_size=0x7f060013;
         public static final int action_bar_text_size=0x7f060002;
         /**  Default screen margins, per the Android Design guidelines. 
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
-        public static final int card_margin_side=0x7f060011;
-        public static final int card_margin_tb=0x7f060012;
+        public static final int card_margin_side=0x7f060015;
+        public static final int card_margin_tb=0x7f060016;
+        public static final int help_instruction_margin=0x7f06000d;
+        public static final int help_instruction_text_size=0x7f060010;
+        public static final int help_list_margin_left=0x7f06000e;
+        public static final int help_list_margin_top=0x7f06000f;
         public static final int options_button_height=0x7f060006;
         public static final int options_content_height=0x7f060005;
         public static final int options_header_margin=0x7f060007;
@@ -100,11 +104,11 @@ public final class R {
         public static final int about_credits_title=0x7f08001e;
         public static final int about_user_image_desc=0x7f080020;
         public static final int about_version_title=0x7f08001f;
-        public static final int action_bar_font_family=0x7f08000a;
         public static final int action_help=0x7f080002;
         public static final int action_shoegaze_state_toggled=0x7f08002b;
         public static final int app_name=0x7f080000;
         public static final int extra_app_state=0x7f08002c;
+        public static final int font_roboto_light=0x7f080004;
         public static final int font_roboto_regular=0x7f080003;
         public static final int help_getting_start_step_one=0x7f080014;
         public static final int help_getting_start_step_two=0x7f080016;
@@ -118,12 +122,12 @@ public final class R {
         public static final int help_getting_started_title=0x7f080013;
         public static final int help_in_depth_title=0x7f08001d;
         public static final int master_switch_title=0x7f080001;
-        public static final int options_alpha=0x7f080007;
-        public static final int options_auto_flash=0x7f080008;
-        public static final int options_cancel=0x7f080006;
-        public static final int options_header=0x7f080004;
-        public static final int options_light_sensing_mode=0x7f080009;
-        public static final int options_save=0x7f080005;
+        public static final int options_alpha=0x7f080008;
+        public static final int options_auto_flash=0x7f080009;
+        public static final int options_cancel=0x7f080007;
+        public static final int options_header=0x7f080005;
+        public static final int options_light_sensing_mode=0x7f08000a;
+        public static final int options_save=0x7f080006;
         public static final int pref_app_state=0x7f080026;
         public static final int pref_auto_flashlight_mode=0x7f08002a;
         public static final int pref_camera_type=0x7f080028;
@@ -141,23 +145,18 @@ public final class R {
     }
     public static final class style {
         public static final int ActionBarTheme=0x7f090002;
-        /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-         */
         public static final int AppBaseTheme=0x7f090000;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
+        /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
-        public static final int CardHeaderTextViewStyle=0x7f090005;
-        public static final int CardSummaryTextViewStyle=0x7f090007;
-        public static final int CardTitleTextViewStyle=0x7f090006;
-        /**  TextView Styles 
-         */
+        public static final int CardHeaderTextViewStyle=0x7f090008;
+        public static final int CardSummaryTextViewStyle=0x7f09000a;
+        public static final int CardTitleTextViewStyle=0x7f090009;
+        public static final int HelpInstructionTextViewStyle=0x7f090005;
+        public static final int HelpListTextViewStyle=0x7f090006;
+        public static final int HelpTextViewStyleBase=0x7f090004;
         public static final int TextViewBaseStyle=0x7f090003;
-        public static final int TitleTextViewBaseStyle=0x7f090004;
+        public static final int TitleTextViewBaseStyle=0x7f090007;
     }
     public static final class xml {
         public static final int settings_screen=0x7f040000;

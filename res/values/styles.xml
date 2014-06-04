@@ -1,19 +1,9 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
     <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
         <item name="android:actionBarStyle">@style/ActionBarTheme</item>
     </style>
 
-    <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
@@ -22,10 +12,24 @@
         <item name="android:background">@android:color/holo_blue_light</item>
     </style>
     
-    <!-- TextView Styles -->
     <style name="TextViewBaseStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="HelpTextViewStyleBase" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/help_instruction_text_size</item>
+        <item name="android:fontFamily">@string/font_roboto_light</item>
+    </style>
+    <style name="HelpInstructionTextViewStyle" parent="@style/HelpTextViewStyleBase">
+        <item name="android:layout_marginTop">@dimen/help_instruction_margin</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_marginLeft">@dimen/help_instruction_margin</item>
+    </style>
+    <style name="HelpListTextViewStyle" parent="@style/HelpTextViewStyleBase">
+        <item name="android:layout_marginLeft">@dimen/help_list_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/help_list_margin_top</item>
     </style>
     <style name="TitleTextViewBaseStyle" parent="@style/TextViewBaseStyle">
         <item name="android:textSize">@dimen/about_title_text_size</item>

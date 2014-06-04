@@ -17,13 +17,18 @@
     <dimen name="options_view_lr_margin">10dp</dimen>
     <dimen name="options_view_tb_margin">20dp</dimen>
     
+    <dimen name="help_instruction_margin">10dp</dimen>
+    <dimen name="help_list_margin_left">50dp</dimen>
+    <dimen name="help_list_margin_top">5dp</dimen>
+    <dimen name="help_instruction_text_size">20sp</dimen>
+    
     <dimen name="about_title_text_size">22sp</dimen>
     <dimen name="about_summary_text_size">18sp</dimen>
     
     <dimen name="about_user_image_size">72dp</dimen>
     <dimen name="about_user_image_border_thickness">2dp</dimen>
     
-    <dimen name="card_margin_side">6dp</dimen>
-    <dimen name="card_margin_tb">4dp</dimen>
+    <dimen name="card_margin_side">12dp</dimen>
+    <dimen name="card_margin_tb">12dp</dimen>
     
 </resources>
