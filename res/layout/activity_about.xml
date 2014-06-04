@@ -57,8 +57,7 @@
        		android:layout_marginRight="@dimen/card_margin_side"
 			android:layout_marginTop="@dimen/card_margin_tb"
 			android:layout_marginBottom="@dimen/card_margin_tb"
-    	    android:orientation="horizontal"
-    	    android:focusable="true">
+    	    android:orientation="horizontal">
 			<com.kformeck.shoegaze.ui.CircularImageView
 			    android:layout_width="@dimen/about_user_image_size"
 			    android:layout_height="@dimen/about_user_image_size"

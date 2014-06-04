@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,15 @@ public class AboutActivity extends Activity {
 		Intent gPlusIntent = new Intent(Intent.ACTION_VIEW);
 		gPlusIntent.setData(Uri.parse(googlePlusUrl));
 		startActivity(gPlusIntent);
+	}
+	private void toggleCardBackgroundColor(View view, boolean hasFocus) {
+		if (hasFocus) {
+			view.setBackgroundColor(getResources().getColor(
+					R.color.bg_card_container));
+		} else {
+			view.setBackgroundColor(getResources().getColor(
+					android.R.color.white));
+		}
 	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +62,32 @@ public class AboutActivity extends Activity {
 				startGooglePlus(URL_GPLUS_ME);
 			}
 		});
+		userMe.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View view, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					toggleCardBackgroundColor(view, true);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					toggleCardBackgroundColor(view, false);
+				}
+				return false;
+			}
+		});
 		userFilip.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				startGooglePlus(URL_GPLUS_FILIP);
+			}
+		});
+		userFilip.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View view, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					toggleCardBackgroundColor(view, true);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					toggleCardBackgroundColor(view, false);
+				}
+				return false;
 			}
 		});
 	}
