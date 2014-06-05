@@ -2,20 +2,13 @@ package com.kformeck.shoegaze.ui;
 
 import java.io.IOException;
 
-import com.example.onthego.R;
-import com.kformeck.shoegaze.LightSensorManager;
-import com.kformeck.shoegaze.notifications.ActivationNotification;
-import com.kformeck.shoegaze.notifications.ShoegazeNotification;
-import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
-import com.kformeck.shoegaze.utilities.DeviceUtils;
-import com.kformeck.shoegaze.utilities.ShoegazeUtils;
-
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -30,6 +23,14 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import com.example.onthego.R;
+import com.kformeck.shoegaze.LightSensorManager;
+import com.kformeck.shoegaze.notifications.ActivationNotification;
+import com.kformeck.shoegaze.notifications.ShoegazeNotification;
+import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+import com.kformeck.shoegaze.utilities.DeviceUtils;
+import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 
 public class ShoegazeService extends Service implements FaceDetectionListener {
 	private static final int CAMERA_BACK = 0;
@@ -62,22 +63,22 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_ALPHA)) {
+			Resources res = getResources();
+			if (action.equals(res.getString(R.string.action_toggle_alpha))) {
 				final float intentAlpha = intent.getFloatExtra(
-						ShoegazeReceiver.EXTRA_ALPHA, ALPHA_MEDIUM);
+						res.getString(R.string.extra_alpha), ALPHA_MEDIUM);
 				toggleOnTheGoAlpha(intentAlpha);
-			} else if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE)) {
+			} else if (action.equals(res.getString(R.string.action_toggle_lsm))) {
 				setLightSensingModeActive(intent.getExtras().getBoolean(
-						ShoegazeReceiver.EXTRA_LSM));
-			} else if (action.equals(
-					context.getResources().getString(R.string.action_toggle_flash))) {
+						res.getString(R.string.extra_lsm)));
+			} else if (action.equals(res.getString(R.string.action_toggle_flash))) {
 				if (intent.getExtras().getBoolean(context.getResources().getString(
 						R.string.extra_flash_is_on))) {
 					toggleFlash(true);
 				} else {
 					toggleFlash(false);
 				}
-			} else if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE)) {
+			} else if (action.equals(res.getString(R.string.action_toggle_camera_mode))) {
 				switchCameras();
 			} else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
 				resetViews();
@@ -105,11 +106,11 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				context.getResources().getString(R.string.pref_camera_type), 0);
 		
 		IntentFilter filter = new IntentFilter();
-		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
-		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
-		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE);
+		filter.addAction(getResources().getString(R.string.action_toggle_alpha));
+		filter.addAction(getResources().getString(R.string.action_toggle_lsm));
 		filter.addAction(getResources().getString(R.string.action_toggle_flash));
-		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE);
+		filter.addAction(getResources().getString(R.string.action_toggle_flash));
+		filter.addAction(getResources().getString(R.string.action_toggle_camera_mode));
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_USER_PRESENT);
 		registerReceiver(broadcastReceiver, filter);
@@ -208,7 +209,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 			        		   R.string.pref_camera_type), newCameraState)
 			           .apply();
 			Intent restartIntent = new Intent(context, ShoegazeReceiver.class);
-			restartIntent.setAction(ShoegazeReceiver.ACTION_RESTART);
+			restartIntent.setAction(getResources().getString(R.string.action_restart));
 			context.sendBroadcast(restartIntent);
 		} 
 	}

@@ -1,13 +1,12 @@
 package com.kformeck.shoegaze.notifications;
 
-import com.example.onthego.R;
-import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
-import com.kformeck.shoegaze.utilities.ShoegazeUtils;
-
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.onthego.R;
+import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 
 public class ShoegazeNotification extends BaseNotification {
 	private static ShoegazeNotification instance;
@@ -34,23 +33,28 @@ public class ShoegazeNotification extends BaseNotification {
 			   .setPriority(Notification.PRIORITY_MAX)
 			   .setContentIntent(getContentIntent());
 		if (type == 1) {
-			PendingIntent restartIntent = ShoegazeUtils.makeServiceIntent(context, ShoegazeReceiver.ACTION_RESTART);
+			PendingIntent restartIntent = ShoegazeUtils.makeServiceIntent(
+					context, context.getResources().getString(R.string.action_restart));
 			builder.addAction(R.drawable.ic_launcher, "Restarting", restartIntent);
 		} else {			
 			builder.addAction(
 						R.drawable.ic_stop, "",
 						ShoegazeUtils.makeServiceIntent(
-								context, ShoegazeReceiver.ACTION_STOP))
+								context, 
+								context.getResources().getString(R.string.action_stop)))
 			       .addAction(
 			    		   R.drawable.ic_switch_camera, "",
 			    		   PendingIntent.getBroadcast(
 			    				   context, 0, 
-			    				   new Intent(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE), 
+			    				   new Intent(
+			    						   context.getResources().getString(
+			    								   R.string.action_toggle_camera_mode)),
 			    				   PendingIntent.FLAG_CANCEL_CURRENT))
 			       .addAction(
 			    		   R.drawable.ic_options, "", 
 			    		   ShoegazeUtils.makeServiceIntent(
-			   					context, ShoegazeReceiver.ACTION_TOGGLE_OPTIONS));
+			   					context, context.getResources().getString(
+			   							R.string.action_toggle_options)));
 		}
 		notificationManager.notify(ID, builder.build());
 		isShoegazing = true;

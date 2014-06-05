@@ -1,7 +1,6 @@
 package com.kformeck.shoegaze.notifications;
 
 import com.example.onthego.R;
-import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 
 import android.app.Notification;
@@ -33,11 +32,13 @@ public class ActivationNotification extends BaseNotification {
 			   .setContentIntent(getContentIntent());
 		if (type == 1) {
 			PendingIntent restartIntent = ShoegazeUtils.makeServiceIntent(
-					context, ShoegazeReceiver.ACTION_RESTART);
+					context, context.getResources().getString(R.string.action_restart));
 			builder.addAction(R.drawable.ic_launcher, "Restart", restartIntent);
 		} else {
 			builder.addAction(R.drawable.ic_start, "Start", 
-					ShoegazeUtils.makeServiceIntent(context, ShoegazeReceiver.ACTION_START));
+					ShoegazeUtils.makeServiceIntent(
+							context,
+							context.getResources().getString(R.string.action_start)));
 		}
 		notificationManager.notify(ID, builder.build());
 	}

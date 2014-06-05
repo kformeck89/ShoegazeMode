@@ -1,49 +1,40 @@
 package com.kformeck.shoegaze.receivers;
 
-import com.kformeck.shoegaze.ui.OptionsDialog;
-import com.kformeck.shoegaze.ui.ShoegazeService;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Handler;
 
-public class ShoegazeReceiver extends BroadcastReceiver {
-	public static final String ACTION_START = "com.kformeck.shoegaze.action.SHOEGAZE_START";
-	public static final String ACTION_STOP = "com.kformeck.shoegaze.action.SHOEGAZE_STOP";
-	public static final String ACTION_ALREADY_STOP = "com.kformeck.shoegaze.action.SHOEGAZE_ALREADY_STOP";
-	public static final String ACTION_RESTART = "com.kformeck.shoegaze.action.SHOEGAZE_RESTART";
-	public static final String ACTION_TOGGLE_ALPHA = "com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_ALPHA";
-	public static final String ACTION_TOGGLE_OPTIONS = "com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_OPTIONS";
-	public static final String ACTION_TOGGLE_LIGHT_SENSING_MODE = "com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_LIGHT_SENSING_MODE";
-	public static final String ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE = "com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_AUTOFLASHLIGHT_MODE";
-	public static final String ACTION_TOGGLE_CAMERA_MODE = "com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_CAMERA_MODE";
-	public static final String EXTRA_ALPHA = "com.kformeck.shoegaze.action.SHOEGAZE_EXTRA_ALPHA";
-	public static final String EXTRA_LSM = "com.kformeck.shoegaze.action.SHOEGAZE_EXTRA_LSM";
+import com.example.onthego.R;
+import com.kformeck.shoegaze.ui.OptionsDialog;
+import com.kformeck.shoegaze.ui.ShoegazeService;
 
+public class ShoegazeReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(final Context context, Intent intent) {
 		final String action = intent.getAction();
 		Handler handler = new Handler();
+		Resources res = context.getResources();
 		if (action != null && !action.isEmpty()) {
 			final Intent serviceTriggerIntent = new Intent(context, ShoegazeService.class);
-			if (action.equals(ACTION_START)) {
+			if (action.equals(res.getString(R.string.action_start))) {
 				context.startService(serviceTriggerIntent);
-			} else if (action.equals(ACTION_STOP)) {
+			} else if (action.equals(res.getString(R.string.action_stop))) {
 				context.stopService(serviceTriggerIntent);
-				context.sendBroadcast(new Intent(ACTION_ALREADY_STOP));
-			} else if (action.equals(ACTION_RESTART)) {
+				context.sendBroadcast(new Intent(res.getString(R.string.action_already_stop)));
+			} else if (action.equals(res.getString(R.string.action_restart))) {
 				context.stopService(serviceTriggerIntent);
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
 						context.startService(serviceTriggerIntent);
 					}}, 1000);	
-			} else if (action.equals(ACTION_TOGGLE_OPTIONS)) {
+			} else if (action.equals(res.getString(R.string.action_toggle_options))) {
 				OptionsDialog.getInstance(context).show();
-			} else if (action.equals(ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE)) {
+			} else if (action.equals(res.getString(R.string.action_toggle_flash))) {
 				context.stopService(serviceTriggerIntent);
-				context.sendBroadcast(new Intent(ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE));
+				context.sendBroadcast(new Intent(res.getString(R.string.action_toggle_flash)));
 			}
 		}
 	}

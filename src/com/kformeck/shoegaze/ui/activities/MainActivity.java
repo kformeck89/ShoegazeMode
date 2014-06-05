@@ -56,7 +56,8 @@ public class MainActivity extends Activity {
 				} else {
 					if (ShoegazeNotification.getInstance().isShoegazing()) {
 						Intent stopIntent = new Intent(MainActivity.this, ShoegazeReceiver.class);
-						stopIntent.setAction(ShoegazeReceiver.ACTION_STOP);
+						stopIntent.setAction(
+								getResources().getString(R.string.action_stop));
 						sendBroadcast(stopIntent);
 					}
 					ShoegazeNotification.getInstance().cancelNotification();

@@ -1,12 +1,9 @@
 package com.kformeck.shoegaze.ui;
 
-import com.example.onthego.R;
-import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
-import com.kformeck.shoegaze.utilities.ShoegazeUtils;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +15,9 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
+import com.example.onthego.R;
+import com.kformeck.shoegaze.utilities.ShoegazeUtils;
+
 public class OptionsDialog {
 	private static OptionsDialog instance;
 	
@@ -25,6 +25,7 @@ public class OptionsDialog {
 	private float userAlpha;
 	
 	private Context context;
+	private Resources res;
 	private SharedPreferences sharedPrefs;
 	private View overlay;
 	private SeekBar alphaSlider;
@@ -45,6 +46,7 @@ public class OptionsDialog {
 		this.context = context;
 		sharedPrefs = context.getSharedPreferences(
 				context.getResources().getString(R.string.shoegaze_prefs), Context.MODE_PRIVATE);
+		res = context.getResources();
 	}
 	
 	public void show() {
@@ -67,8 +69,7 @@ public class OptionsDialog {
 		
 		overlay = ((LayoutInflater)context.getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.overlay_options, null, false);
-		overlay.setBackground(context.getResources().getDrawable(
-				android.R.drawable.dialog_holo_dark_frame));
+		overlay.setBackground(res.getDrawable(android.R.drawable.dialog_holo_dark_frame));
 		overlay.setAlpha(1);
 		
 		Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
@@ -126,14 +127,14 @@ public class OptionsDialog {
 	private void sendAlphaBroadcast(String i) {
 		final float value = (Float.parseFloat(i) / 100);
 		final Intent alphaBroadcast = new Intent();
-		alphaBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
-		alphaBroadcast.putExtra(ShoegazeReceiver.EXTRA_ALPHA, value);
+		alphaBroadcast.setAction(context.getResources().getString(R.string.action_toggle_alpha));
+		alphaBroadcast.putExtra(res.getString(R.string.extra_alpha), value);
 		context.sendBroadcast(alphaBroadcast);
 	}
 	private void sendLsmBroadcast(boolean value) {
 		Intent lsmBroadcast = new Intent();
-		lsmBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
-		lsmBroadcast.putExtra(ShoegazeReceiver.EXTRA_LSM, value);
+		lsmBroadcast.setAction(res.getString(R.string.action_toggle_lsm));
+		lsmBroadcast.putExtra(res.getString(R.string.extra_lsm), value);
 		context.sendBroadcast(lsmBroadcast);
 	}
 	private void close() {
