@@ -103,14 +103,14 @@ public final class R {
         public static final int about_user_image_desc=0x7f080020;
         public static final int about_version_title=0x7f08001f;
         public static final int action_already_stop=0x7f08002c;
-        public static final int action_help=0x7f080032;
+        public static final int action_help=0x7f080033;
         public static final int action_restart=0x7f08002d;
-        public static final int action_shoegaze_state_toggled=0x7f080033;
+        public static final int action_shoegaze_state_toggled=0x7f080034;
         public static final int action_start=0x7f08002a;
         public static final int action_stop=0x7f08002b;
         public static final int action_toggle_alpha=0x7f08002e;
         public static final int action_toggle_camera_mode=0x7f080031;
-        public static final int action_toggle_flash=0x7f080034;
+        public static final int action_toggle_flash=0x7f080032;
         public static final int action_toggle_lsm=0x7f080030;
         public static final int action_toggle_options=0x7f08002f;
         public static final int app_name=0x7f080000;
