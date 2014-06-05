@@ -7,6 +7,6 @@
         android:height="30dp"/>
     <stroke 
         android:width="25dp"
-        android:color="#22ffffff"/>
+        android:color="#00000000"/>
     <solid android:color="#ffffffff"/>
 </shape>
