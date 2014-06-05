@@ -26,9 +26,9 @@ import android.widget.Toast;
 
 import com.example.onthego.R;
 import com.kformeck.shoegaze.LightSensorManager;
-import com.kformeck.shoegaze.notifications.ActivationNotification;
-import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
+import com.kformeck.shoegaze.ui.notifications.ActivationNotification;
+import com.kformeck.shoegaze.ui.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.utilities.DeviceUtils;
 import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 

@@ -1,7 +1,7 @@
 package com.kformeck.shoegaze.receivers;
 
 import com.example.onthego.R;
-import com.kformeck.shoegaze.notifications.ActivationNotification;
+import com.kformeck.shoegaze.ui.notifications.ActivationNotification;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

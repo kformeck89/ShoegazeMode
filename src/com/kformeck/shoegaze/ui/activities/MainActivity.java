@@ -10,10 +10,10 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 
 import com.example.onthego.R;
-import com.kformeck.shoegaze.notifications.ActivationNotification;
-import com.kformeck.shoegaze.notifications.ShoegazeNotification;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 import com.kformeck.shoegaze.ui.fragments.SettingsFragment;
+import com.kformeck.shoegaze.ui.notifications.ActivationNotification;
+import com.kformeck.shoegaze.ui.notifications.ShoegazeNotification;
 
 public class MainActivity extends Activity {
 	private Switch masterSwitch;
