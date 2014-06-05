@@ -56,8 +56,12 @@ public final class R {
         public static final int ic_start=0x7f020009;
         public static final int ic_stop=0x7f02000a;
         public static final int ic_switch_camera=0x7f02000b;
-        public static final int user_image_filip=0x7f02000c;
-        public static final int user_image_me=0x7f02000d;
+        public static final int scrollbar_thumb=0x7f02000c;
+        public static final int scrollbar_thumb_disabled=0x7f02000d;
+        public static final int scrollbar_thumb_enabled=0x7f02000e;
+        public static final int scrollbar_thumb_pressed=0x7f02000f;
+        public static final int user_image_filip=0x7f020010;
+        public static final int user_image_me=0x7f020011;
     }
     public static final class id {
         public static final int actionBarSwitch=0x7f0b000a;

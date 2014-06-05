@@ -118,6 +118,7 @@ public class OptionsDialog {
 		rearrangeUi(isAutoModeOn ? UiMode.AUTO : UiMode.MANUAL);
 		lsmSwitch.setChecked(isAutoModeOn);
 		alphaSlider.setProgress((int)userAlpha);
+		alphaSlider.setThumb(res.getDrawable(R.drawable.scrollbar_thumb));
 		
 		windowManager.addView(overlay, params);
 	}	
