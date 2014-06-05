@@ -48,7 +48,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 	private int cameraType;
 	private float userAlpha;
 	private boolean isAutoModeOn;
-	private boolean isAutoFlashOn;
 	
 	private Context context;
 	private FrameLayout overlay;
@@ -78,8 +77,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				} else {
 					toggleFlash(false);
 				}
-				setAutoFlashlightModeActive(intent.getExtras().getBoolean(
-						ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT));
 			} else if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE)) {
 				switchCameras();
 			} else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
@@ -104,8 +101,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				context.getResources().getString(R.string.pref_user_alpha), ALPHA_MEDIUM);
 		isAutoModeOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_light_sensing_mode), false);
-		isAutoFlashOn = sharedPrefs.getBoolean(
-				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
 		cameraType = sharedPrefs.getInt(
 				context.getResources().getString(R.string.pref_camera_type), 0);
 		
@@ -133,7 +128,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				context.getResources().getString(R.string.pref_app_state), true)) {
 			ActivationNotification.getInstance().startNotification(context, 0);	
 		}
-		ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
+		ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, userAlpha);
 		
 		super.onDestroy();
 	}
@@ -274,7 +269,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		
 		if (isAutoModeOn) {
 			setLightSensingModeActive(isAutoModeOn);
-			setAutoFlashlightModeActive(isAutoFlashOn);
 		}
 		
 		overlay = new FrameLayout(context);
@@ -329,14 +323,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		} else {
 			LightSensorManager.getInstance(context).cancel();
 		}
-	}
-	public boolean getAutoFlashlightModeActive() {
-		return isAutoFlashOn;
-	}
-	public void setAutoFlashlightModeActive(boolean isActive) {
-		isAutoFlashOn = isActive;
-		sharedPrefs.edit().putBoolean(context.getResources().getString(
-				R.string.pref_auto_flashlight_mode), isActive).commit();
 	}
 
 	@SuppressWarnings("deprecation")

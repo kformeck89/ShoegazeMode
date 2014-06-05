@@ -22,13 +22,11 @@ public class OptionsDialog {
 	private static OptionsDialog instance;
 	
 	private boolean isAutoModeOn;
-	private boolean isAutoFlashOn;
 	private float userAlpha;
 	
 	private Context context;
 	private SharedPreferences sharedPrefs;
 	private View overlay;
-	private Switch autoFlashSwitch;
 	private SeekBar alphaSlider;
 	private WindowManager windowManager;
 	
@@ -55,8 +53,6 @@ public class OptionsDialog {
 				context.getResources().getInteger(R.integer.brightness_medium));
 		isAutoModeOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_light_sensing_mode), false);
-		isAutoFlashOn = sharedPrefs.getBoolean(
-				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
 		
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);		
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
@@ -78,7 +74,6 @@ public class OptionsDialog {
 		Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
 		Button btnSave = (Button)overlay.findViewById(R.id.btnSave);
 		Button btnCancel = (Button)overlay.findViewById(R.id.btnCancel);
-		autoFlashSwitch = (Switch)overlay.findViewById(R.id.switchAutoflash);
 		alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);
 		
 		lsmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -89,21 +84,11 @@ public class OptionsDialog {
 					rearrangeUi(UiMode.AUTO);					
 				} else {
 					isAutoModeOn = false;
-					isAutoFlashOn = false;
 					rearrangeUi(UiMode.MANUAL);					
 				}
 				sendLsmBroadcast(isChecked);
 			}	
-		});			
-		autoFlashSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				isAutoFlashOn = isChecked;
-				Intent toggleAutoFlashIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE);
-			    toggleAutoFlashIntent.putExtra(ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT, isChecked);
-			    context.sendBroadcast(toggleAutoFlashIntent);
-			}
-		});		
+		});					
 		alphaSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -118,7 +103,7 @@ public class OptionsDialog {
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
+				ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, userAlpha);
 				close();
 			}
 		});
@@ -133,18 +118,10 @@ public class OptionsDialog {
 		lsmSwitch.setChecked(isAutoModeOn);
 		alphaSlider.setProgress((int)userAlpha);
 		
-		
-		
 		windowManager.addView(overlay, params);
 	}	
 	private void rearrangeUi(UiMode mode) {
-		if (mode == UiMode.AUTO) {
-			alphaSlider.setVisibility(View.GONE);
-			autoFlashSwitch.setVisibility(View.VISIBLE);
-		} else {
-			autoFlashSwitch.setVisibility(View.GONE);
-			alphaSlider.setVisibility(View.VISIBLE);
-		}
+		alphaSlider.setEnabled(mode == UiMode.MANUAL);
 	}
 	private void sendAlphaBroadcast(String i) {
 		final float value = (Float.parseFloat(i) / 100);
