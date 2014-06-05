@@ -1,12 +1,9 @@
 package com.kformeck.shoegaze.ui;
 
-import com.example.onthego.R;
-import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
-import com.kformeck.shoegaze.utilities.ShoegazeUtils;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,17 +15,19 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
+import com.example.onthego.R;
+import com.kformeck.shoegaze.utilities.ShoegazeUtils;
+
 public class OptionsDialog {
 	private static OptionsDialog instance;
 	
 	private boolean isAutoModeOn;
-	private boolean isAutoFlashOn;
 	private float userAlpha;
 	
 	private Context context;
+	private Resources res;
 	private SharedPreferences sharedPrefs;
 	private View overlay;
-	private Switch autoFlashSwitch;
 	private SeekBar alphaSlider;
 	private WindowManager windowManager;
 	
@@ -47,6 +46,7 @@ public class OptionsDialog {
 		this.context = context;
 		sharedPrefs = context.getSharedPreferences(
 				context.getResources().getString(R.string.shoegaze_prefs), Context.MODE_PRIVATE);
+		res = context.getResources();
 	}
 	
 	public void show() {
@@ -55,8 +55,6 @@ public class OptionsDialog {
 				context.getResources().getInteger(R.integer.brightness_medium));
 		isAutoModeOn = sharedPrefs.getBoolean(
 				context.getResources().getString(R.string.pref_light_sensing_mode), false);
-		isAutoFlashOn = sharedPrefs.getBoolean(
-				context.getResources().getString(R.string.pref_auto_flashlight_mode), false);
 		
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);		
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
@@ -71,14 +69,12 @@ public class OptionsDialog {
 		
 		overlay = ((LayoutInflater)context.getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.overlay_options, null, false);
-		overlay.setBackground(context.getResources().getDrawable(
-				android.R.drawable.dialog_holo_dark_frame));
+		overlay.setBackground(res.getDrawable(android.R.drawable.dialog_holo_dark_frame));
 		overlay.setAlpha(1);
 		
 		Switch lsmSwitch = (Switch)overlay.findViewById(R.id.switchLightSensingMode);
 		Button btnSave = (Button)overlay.findViewById(R.id.btnSave);
 		Button btnCancel = (Button)overlay.findViewById(R.id.btnCancel);
-		autoFlashSwitch = (Switch)overlay.findViewById(R.id.switchAutoflash);
 		alphaSlider = (SeekBar)overlay.findViewById(R.id.sliderAlpha);
 		
 		lsmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -89,21 +85,11 @@ public class OptionsDialog {
 					rearrangeUi(UiMode.AUTO);					
 				} else {
 					isAutoModeOn = false;
-					isAutoFlashOn = false;
 					rearrangeUi(UiMode.MANUAL);					
 				}
 				sendLsmBroadcast(isChecked);
 			}	
-		});			
-		autoFlashSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				isAutoFlashOn = isChecked;
-				Intent toggleAutoFlashIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE);
-			    toggleAutoFlashIntent.putExtra(ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT, isChecked);
-			    context.sendBroadcast(toggleAutoFlashIntent);
-			}
-		});		
+		});					
 		alphaSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -118,7 +104,7 @@ public class OptionsDialog {
 		btnSave.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, isAutoFlashOn, userAlpha);
+				ShoegazeUtils.saveSettings(sharedPrefs, context, isAutoModeOn, userAlpha);
 				close();
 			}
 		});
@@ -132,31 +118,24 @@ public class OptionsDialog {
 		rearrangeUi(isAutoModeOn ? UiMode.AUTO : UiMode.MANUAL);
 		lsmSwitch.setChecked(isAutoModeOn);
 		alphaSlider.setProgress((int)userAlpha);
-		
-		
+		alphaSlider.setThumb(res.getDrawable(R.drawable.scrollbar_thumb));
 		
 		windowManager.addView(overlay, params);
 	}	
 	private void rearrangeUi(UiMode mode) {
-		if (mode == UiMode.AUTO) {
-			alphaSlider.setVisibility(View.GONE);
-			autoFlashSwitch.setVisibility(View.VISIBLE);
-		} else {
-			autoFlashSwitch.setVisibility(View.GONE);
-			alphaSlider.setVisibility(View.VISIBLE);
-		}
+		alphaSlider.setEnabled(mode == UiMode.MANUAL);
 	}
 	private void sendAlphaBroadcast(String i) {
 		final float value = (Float.parseFloat(i) / 100);
 		final Intent alphaBroadcast = new Intent();
-		alphaBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
-		alphaBroadcast.putExtra(ShoegazeReceiver.EXTRA_ALPHA, value);
+		alphaBroadcast.setAction(context.getResources().getString(R.string.action_toggle_alpha));
+		alphaBroadcast.putExtra(res.getString(R.string.extra_alpha), value);
 		context.sendBroadcast(alphaBroadcast);
 	}
 	private void sendLsmBroadcast(boolean value) {
 		Intent lsmBroadcast = new Intent();
-		lsmBroadcast.setAction(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
-		lsmBroadcast.putExtra(ShoegazeReceiver.EXTRA_LSM, value);
+		lsmBroadcast.setAction(res.getString(R.string.action_toggle_lsm));
+		lsmBroadcast.putExtra(res.getString(R.string.extra_lsm), value);
 		context.sendBroadcast(lsmBroadcast);
 	}
 	private void close() {

@@ -17,7 +17,7 @@
     
     <View 
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@color/options_font_color"/>
     
     <GridLayout 
@@ -74,33 +74,6 @@
 	        android:layout_row="1"
 	        android:visibility="visible"
 	        android:max="100"/>
-	    <TextView
-	        android:id="@+id/txtAutoFlash"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_column="0"
-	        android:layout_gravity="right|top"
-	        android:layout_marginLeft="@dimen/options_view_lr_margin"
-	        android:layout_marginRight="@dimen/options_view_lr_margin"
-	        android:layout_marginTop="@dimen/options_view_tb_margin"
-	        android:layout_marginBottom="@dimen/options_view_tb_margin"
-	        android:layout_row="1"
-	        android:visibility="gone"
-	        android:text="@string/options_auto_flash"
-	        android:textColor="@color/options_font_color"
-	        android:fontFamily="@string/font_roboto_regular" />
-	    <Switch
-	        android:id="@+id/switchAutoflash"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_column="1"
-	        android:layout_gravity="left|top"
-	        android:layout_marginLeft="@dimen/options_view_lr_margin"
-	        android:layout_marginRight="@dimen/options_view_lr_margin"
-	        android:layout_marginTop="@dimen/options_view_tb_margin"
-	        android:layout_marginBottom="@dimen/options_view_tb_margin"
-	        android:layout_row="1"
-	        android:visibility="gone" />
 	</GridLayout>
 	
     <View 

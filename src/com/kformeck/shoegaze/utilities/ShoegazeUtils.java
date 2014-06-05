@@ -18,14 +18,10 @@ public class ShoegazeUtils {
 			SharedPreferences sharedPrefs,
 			Context context,
 			boolean isAutoModeOn,
-			boolean isAutoFlashOn,
 			float userAlpha) {
 		sharedPrefs.edit()
         		   .putBoolean(context.getResources().getString(R.string.pref_light_sensing_mode), isAutoModeOn)
         		   .apply();
-		sharedPrefs.edit()
-		   	       .putBoolean(context.getResources().getString(R.string.pref_auto_flashlight_mode), isAutoFlashOn)
-		   	       .apply();
 		sharedPrefs.edit()
 		   	 	   .putFloat(context.getResources().getString(R.string.pref_user_alpha), userAlpha)
 		   	 	   .apply();

@@ -1,14 +1,14 @@
 package com.kformeck.shoegaze;
 
-import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
-import com.kformeck.shoegaze.ui.ShoegazeService;
-
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+
+import com.example.onthego.R;
+import com.kformeck.shoegaze.ui.ShoegazeService;
 
 public class LightSensorManager implements SensorEventListener {
 	private static LightSensorManager instance;
@@ -25,7 +25,8 @@ public class LightSensorManager implements SensorEventListener {
 	}
 	private LightSensorManager(Context context) { 
 		this.context = context;
-		alphaChangedIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
+		alphaChangedIntent = new Intent(
+				context.getResources().getString(R.string.action_toggle_alpha));
 	}
 
 	public void start() {
@@ -66,7 +67,8 @@ public class LightSensorManager implements SensorEventListener {
 			} else if (event.values[0] > SensorManager.LIGHT_SUNLIGHT_MAX) {
 				alphaExtra = ShoegazeService.ALPHA_MIN;
 			}
-			alphaChangedIntent.putExtra(ShoegazeReceiver.EXTRA_ALPHA, alphaExtra);
+			alphaChangedIntent.putExtra(
+					context.getResources().getString(R.string.extra_alpha), alphaExtra);
 			context.sendBroadcast(alphaChangedIntent);
 		}		
 	}

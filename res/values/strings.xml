@@ -50,13 +50,24 @@
     <string name="pref_user_alpha">com.kformeck.shoegaze.prefs.USER_ALPHA</string>
     <string name="pref_camera_type">com.kformeck.shoegaze.prefs.CAMERA_TYPE</string>
 	<string name="pref_light_sensing_mode">com.kformeck.shoegaze.prefs.LIGHT_SENSING_MODE</string>
-    <string name="pref_auto_flashlight_mode">com.kformeck.shoegaze.prefs.AUTO_FLASHLIGHT_MODE</string>
     
+	<string name="action_start">com.kformeck.shoegaze.action.SHOEGAZE_START</string>
+	<string name="action_stop">com.kformeck.shoegaze.action.SHOEGAZE_STOP</string>
+	<string name="action_already_stop">com.kformeck.shoegaze.action.SHOEGAZE_ALREADY_STOP</string>
+	<string name="action_restart">com.kformeck.shoegaze.action.SHOEGAZE_RESTART</string>
+	<string name="action_toggle_alpha">com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_ALPHA</string>
+	<string name="action_toggle_options">com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_OPTIONS</string>
+	<string name="action_toggle_lsm">com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_LIGHT_SENSING_MODE</string>
+	<string name="action_toggle_camera_mode">com.kformeck.shoegaze.action.SHOEGAZE_TOGGLE_CAMERA_MODE</string>
+	<string name="action_toggle_flash">com.kformeck.shoegaze.actions.SHOEGAZE_TOGGLE_FLASH</string>
+	
     <string name="action_help">Help</string>
     <string name="action_shoegaze_state_toggled">com.kformeck.shoegaze.actions.SHOEGAZE_STATE_TOGGLED</string>
-    <string name="action_toggle_flash">com.kformeck.shoegaze.actions.SHOEGAZE_TOGGLE_FLASH</string>
+    
 	
     <string name="extra_app_state">com.kformeck.shoegaze.APP_STATE</string>
+    <string name="extra_alpha">com.kformeck.shoegaze.action.SHOEGAZE_EXTRA_ALPHA</string>
+    <string name="extra_lsm">com.kformeck.shoegaze.action.SHOEGAZE_EXTRA_LSM</string>
     <string name="extra_flash_is_on">com.kformeck.shoegaze.FLASH_IS_ON</string>  
     
 </resources>
