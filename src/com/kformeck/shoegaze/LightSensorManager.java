@@ -1,5 +1,6 @@
 package com.kformeck.shoegaze;
 
+import com.example.onthego.R;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 import com.kformeck.shoegaze.ui.ShoegazeService;
 
@@ -12,7 +13,10 @@ import android.hardware.SensorManager;
 
 public class LightSensorManager implements SensorEventListener {
 	private static LightSensorManager instance;
+	private float previousSensorValue;
 	private Context context;
+	private Intent alphaChangedIntent;
+	private Intent flashIntent;
 	private Sensor sensor;
 	private SensorManager manager;
 	
@@ -24,6 +28,10 @@ public class LightSensorManager implements SensorEventListener {
 	}
 	private LightSensorManager(Context context) { 
 		this.context = context;
+		previousSensorValue = -1;
+		alphaChangedIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
+		flashIntent = new Intent(context.getResources().getString(
+				R.string.action_toggle_flash));
 	}
 
 	public void start() {
@@ -44,7 +52,6 @@ public class LightSensorManager implements SensorEventListener {
 	public void onSensorChanged(SensorEvent event) {
 		if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
 			float alphaExtra = 0.0f;
-			Intent alphaChangedIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 			if (event.values[0] <= SensorManager.LIGHT_NO_MOON) {
 				alphaExtra = ShoegazeService.ALPHA_MAX;
 			} else if (event.values[0] > SensorManager.LIGHT_NO_MOON &&
@@ -67,6 +74,17 @@ public class LightSensorManager implements SensorEventListener {
 			}
 			alphaChangedIntent.putExtra(ShoegazeReceiver.EXTRA_ALPHA, alphaExtra);
 			context.sendBroadcast(alphaChangedIntent);
+			
+			if (event.values[0] == 0 && previousSensorValue == 0) {
+				flashIntent.putExtra(
+						context.getResources().getString(R.string.extra_flash_is_on), true);
+				context.sendBroadcast(flashIntent);
+			} else if (event.values[0] != 0 && previousSensorValue != 0) {
+				flashIntent.putExtra(
+						context.getResources().getString(R.string.extra_flash_is_on), false);
+				context.sendBroadcast(flashIntent);
+			}
+			previousSensorValue = event.values[0];
 		}		
 	}
 	@Override

@@ -21,6 +21,7 @@ import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.Camera.Face;
 import android.hardware.Camera.FaceDetectionListener;
+import android.hardware.Camera.Parameters;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.SystemClock;
@@ -63,12 +64,22 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
 			if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_ALPHA)) {
-				final float intentAlpha = intent.getFloatExtra(ShoegazeReceiver.EXTRA_ALPHA, ALPHA_MEDIUM);
+				final float intentAlpha = intent.getFloatExtra(
+						ShoegazeReceiver.EXTRA_ALPHA, ALPHA_MEDIUM);
 				toggleOnTheGoAlpha(intentAlpha);
 			} else if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE)) {
-				setLightSensingModeActive(intent.getExtras().getBoolean(ShoegazeReceiver.EXTRA_LSM));
-			} else if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE)) {
-				setAutoFlashlightModeActive(intent.getExtras().getBoolean(ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT));
+				setLightSensingModeActive(intent.getExtras().getBoolean(
+						ShoegazeReceiver.EXTRA_LSM));
+			} else if (action.equals(
+					context.getResources().getString(R.string.action_toggle_flash))) {
+				if (intent.getExtras().getBoolean(context.getResources().getString(
+						R.string.extra_flash_is_on))) {
+					toggleFlash(true);
+				} else {
+					toggleFlash(false);
+				}
+				setAutoFlashlightModeActive(intent.getExtras().getBoolean(
+						ShoegazeReceiver.EXTRA_AUTO_FLASHLIGHT));
 			} else if (action.equals(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE)) {
 				switchCameras();
 			} else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
@@ -102,6 +113,7 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_LIGHT_SENSING_MODE);
 		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_AUTO_FLASHLIGHT_MODE);
+		filter.addAction(getResources().getString(R.string.action_toggle_flash));
 		filter.addAction(ShoegazeReceiver.ACTION_TOGGLE_CAMERA_MODE);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_USER_PRESENT);
@@ -148,6 +160,22 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 			}
 		}
 	}
+	private void toggleFlash(boolean flashIsOn) {
+		if (camera == null) {
+			return;
+		}
+
+		Parameters params;
+		params = camera.getParameters();
+		if (flashIsOn) {
+			params.setFlashMode(Parameters.FLASH_MODE_TORCH);
+			camera.setParameters(params);
+		} else {
+			params.setFlashMode(Parameters.FLASH_MODE_OFF);
+			camera.setParameters(params);
+		}
+	}
+
 	private void getCameraInstance(int type) throws RuntimeException {
 		releaseCamera();
 		if (!DeviceUtils.deviceSupportsFrontCamera(context)) {

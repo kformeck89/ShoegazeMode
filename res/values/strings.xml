@@ -2,9 +2,8 @@
 <resources>
 
     <string name="app_name">Shoegaze Mode</string>
-    
+
     <string name="master_switch_title">Toggle Shoegaze Mode</string>
-    <string name="action_help">Help</string>
     
     <string name="font_roboto_regular">sans-serif</string>
     <string name="font_roboto_light">sans-serif-light</string>
@@ -53,8 +52,11 @@
 	<string name="pref_light_sensing_mode">com.kformeck.shoegaze.prefs.LIGHT_SENSING_MODE</string>
     <string name="pref_auto_flashlight_mode">com.kformeck.shoegaze.prefs.AUTO_FLASHLIGHT_MODE</string>
     
+    <string name="action_help">Help</string>
     <string name="action_shoegaze_state_toggled">com.kformeck.shoegaze.actions.SHOEGAZE_STATE_TOGGLED</string>
+    <string name="action_toggle_flash">com.kformeck.shoegaze.actions.SHOEGAZE_TOGGLE_FLASH</string>
 	
     <string name="extra_app_state">com.kformeck.shoegaze.APP_STATE</string>
+    <string name="extra_flash_is_on">com.kformeck.shoegaze.FLASH_IS_ON</string>  
     
 </resources>
