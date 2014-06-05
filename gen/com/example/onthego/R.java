@@ -49,15 +49,17 @@ public final class R {
         public static final int getting_started_step_three=0x7f020002;
         public static final int getting_started_step_two=0x7f020003;
         public static final int ic_action_bar=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int ic_notification_running=0x7f020006;
-        public static final int ic_notification_stopped=0x7f020007;
-        public static final int ic_options=0x7f020008;
-        public static final int ic_start=0x7f020009;
-        public static final int ic_stop=0x7f02000a;
-        public static final int ic_switch_camera=0x7f02000b;
-        public static final int user_image_filip=0x7f02000c;
-        public static final int user_image_me=0x7f02000d;
+        public static final int ic_flash_off=0x7f020005;
+        public static final int ic_flash_on=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_notification_running=0x7f020008;
+        public static final int ic_notification_stopped=0x7f020009;
+        public static final int ic_options=0x7f02000a;
+        public static final int ic_start=0x7f02000b;
+        public static final int ic_stop=0x7f02000c;
+        public static final int ic_switch_camera=0x7f02000d;
+        public static final int user_image_filip=0x7f02000e;
+        public static final int user_image_me=0x7f02000f;
     }
     public static final class id {
         public static final int actionBarSwitch=0x7f0b000c;
