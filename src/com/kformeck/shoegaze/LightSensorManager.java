@@ -1,7 +1,5 @@
 package com.kformeck.shoegaze;
 
-import java.util.ArrayList;
-
 import com.example.onthego.R;
 import com.kformeck.shoegaze.receivers.ShoegazeReceiver;
 import com.kformeck.shoegaze.ui.ShoegazeService;
@@ -15,41 +13,12 @@ import android.hardware.SensorManager;
 
 public class LightSensorManager implements SensorEventListener {
 	private static LightSensorManager instance;
-	private static final int SENSOR_HISTORY_SIZE = 10;
+	private float previousSensorValue;
 	private Context context;
 	private Intent alphaChangedIntent;
 	private Intent flashIntent;
 	private Sensor sensor;
 	private SensorManager manager;
-	
-	private class LightSensorStatManager {
-		private ArrayList<Float> sensorHistory;
-		public LightSensorStatManager() {
-			sensorHistory = new ArrayList<Float>();
-		}
-		private float getAverage() {
-			float sum = 0.0f;
-			for (float value : sensorHistory) {
-				sum += value;
-			}
-			return (sum / sensorHistory.size());
-		}
-		public boolean shouldFlashBeOn(float currentSensorValue) {
-			if (sensorHistory.size() >= SENSOR_HISTORY_SIZE) {
-				sensorHistory.remove(SENSOR_HISTORY_SIZE - 1);
-				sensorHistory.add(0, currentSensorValue);
-				if (getAverage() > 1) {
-					return false;
-				} else {
-					return true;
-				}
-			} else {
-				sensorHistory.add(currentSensorValue);
-				return false;
-			}
-		}
-	}
-	private LightSensorStatManager statManager;
 	
 	public static LightSensorManager getInstance(Context context) {
 		if (instance == null) {
@@ -59,7 +28,7 @@ public class LightSensorManager implements SensorEventListener {
 	}
 	private LightSensorManager(Context context) { 
 		this.context = context;
-		statManager = new LightSensorStatManager();
+		previousSensorValue = -1;
 		alphaChangedIntent = new Intent(ShoegazeReceiver.ACTION_TOGGLE_ALPHA);
 		flashIntent = new Intent(context.getResources().getString(
 				R.string.action_toggle_flash));
@@ -104,17 +73,18 @@ public class LightSensorManager implements SensorEventListener {
 				alphaExtra = ShoegazeService.ALPHA_MIN;
 			}
 			alphaChangedIntent.putExtra(ShoegazeReceiver.EXTRA_ALPHA, alphaExtra);
-			context.sendBroadcast(alphaChangedIntent);		
+			context.sendBroadcast(alphaChangedIntent);
 			
-			if (statManager.shouldFlashBeOn(event.values[0])) {
+			if (event.values[0] == 0 && previousSensorValue == 0) {
 				flashIntent.putExtra(
 						context.getResources().getString(R.string.extra_flash_is_on), true);
 				context.sendBroadcast(flashIntent);
-			} else {
+			} else if (event.values[0] != 0 && previousSensorValue != 0) {
 				flashIntent.putExtra(
 						context.getResources().getString(R.string.extra_flash_is_on), false);
 				context.sendBroadcast(flashIntent);
 			}
+			previousSensorValue = event.values[0];
 		}		
 	}
 	@Override
