@@ -37,6 +37,11 @@
     <string name="help_getting_started_step_three_desc">Step Three</string>
     <string name="help_in_depth_title">In Depth</string>
     
+    <string name="help_details_alpha_title">Alpha</string>
+    <string name="help_details_alpha_summary">The transparency value of the overlay.  The higher the alpha value, the higher the transparency.</string>
+    <string name="help_details_auto_mode_title">Auto-Mode</string>
+    <string name="help_details_auto_mode_summary">Automatically controls the alpha setting of the overlay by analyzing the incoming light sensor values.  When this mode is turned on, the alpha slider will automatically be disabled since the application will control the alpha value.</string>
+    
     <string name="about_credits_title">Credits</string>
     <string name="about_version_title">Version</string>
     <string name="about_user_image_desc">G+ Default</string>
