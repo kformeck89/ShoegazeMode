@@ -17,6 +17,8 @@
     <dimen name="options_view_lr_margin">10dp</dimen>
     <dimen name="options_view_tb_margin">20dp</dimen>
     
+    <dimen name="shoegaze_notification_submenu_icon_size">96dp</dimen>
+    
     <dimen name="help_instruction_margin">10dp</dimen>
     <dimen name="help_list_margin_left">50dp</dimen>
     <dimen name="help_list_margin_top">5dp</dimen>

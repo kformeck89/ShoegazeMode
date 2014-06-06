@@ -11,6 +11,8 @@ import com.kformeck.shoegaze.utilities.ShoegazeUtils;
 public class ShoegazeNotification extends BaseNotification {
 	private static ShoegazeNotification instance;
 	private boolean isShoegazing;
+	private boolean isFlashEnabled;
+	private boolean isFlashOn;
 	
 	public static ShoegazeNotification getInstance() {
 		if (instance == null) {
@@ -18,7 +20,11 @@ public class ShoegazeNotification extends BaseNotification {
 		}
 		return instance;
 	}
-	private ShoegazeNotification() { isShoegazing = false; }
+	private ShoegazeNotification() { 
+		isShoegazing = false;
+		isFlashEnabled = false;
+		isFlashOn = false;
+	}
 	
 	@Override
 	public void startNotification(Context context, int type) {
@@ -36,8 +42,30 @@ public class ShoegazeNotification extends BaseNotification {
 			PendingIntent restartIntent = ShoegazeUtils.makeServiceIntent(
 					context, context.getResources().getString(R.string.action_restart));
 			builder.addAction(R.drawable.ic_launcher, "Restarting", restartIntent);
-		} else {			
-			builder.addAction(
+		} else {
+			Intent flashIntent = new Intent(context.getResources().getString(
+					R.string.action_toggle_flash));
+			flashIntent.putExtra(context.getResources().getString(
+					R.string.extra_flash_is_on), isFlashOn);
+			if (isFlashEnabled) {
+				builder.addAction(
+						R.drawable.ic_stop, "",
+						ShoegazeUtils.makeServiceIntent(
+								context, 
+								context.getResources().getString(R.string.action_stop)))
+			       .addAction(
+			    		   R.drawable.ic_flash_on, "",
+			    		   PendingIntent.getBroadcast(
+			    		       context, 0, 
+			    		       flashIntent,
+			    			   PendingIntent.FLAG_CANCEL_CURRENT))
+			       .addAction(
+			    		   R.drawable.ic_options, "", 
+			    		   ShoegazeUtils.makeServiceIntent(
+			   					context, context.getResources().getString(
+			   							R.string.action_toggle_options)));
+			} else {
+				builder.addAction(
 						R.drawable.ic_stop, "",
 						ShoegazeUtils.makeServiceIntent(
 								context, 
@@ -45,16 +73,17 @@ public class ShoegazeNotification extends BaseNotification {
 			       .addAction(
 			    		   R.drawable.ic_switch_camera, "",
 			    		   PendingIntent.getBroadcast(
-			    				   context, 0, 
-			    				   new Intent(
-			    						   context.getResources().getString(
-			    								   R.string.action_toggle_camera_mode)),
-			    				   PendingIntent.FLAG_CANCEL_CURRENT))
+			    		       context, 0, 
+			    			   new Intent(
+			    					   context.getResources().getString(
+			    							   R.string.action_toggle_camera_mode)),
+			    			   PendingIntent.FLAG_CANCEL_CURRENT))
 			       .addAction(
 			    		   R.drawable.ic_options, "", 
 			    		   ShoegazeUtils.makeServiceIntent(
 			   					context, context.getResources().getString(
 			   							R.string.action_toggle_options)));
+			}
 		}
 		notificationManager.notify(ID, builder.build());
 		isShoegazing = true;
@@ -67,5 +96,10 @@ public class ShoegazeNotification extends BaseNotification {
 	
 	public boolean isShoegazing() {
 		return isShoegazing;
+	}
+	public void setFlashEnabled(boolean flashEnabled) {
+		isFlashEnabled = flashEnabled;
+		this.cancelNotification();
+		this.startNotification(context, 0);
 	}
 }

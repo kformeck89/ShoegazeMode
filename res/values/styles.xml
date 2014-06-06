@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/ActionBarTheme</item>
@@ -50,4 +50,9 @@
         <item name="android:fontFamily">"@string/font_roboto_regular"</item>
     </style>
     
+    <style name="SubmenuImageButtonStyle" parent="@android:style/Widget.ImageButton">
+        <item name="android:layout_width">@dimen/shoegaze_notification_submenu_icon_size</item>
+        <item name="android:layout_height">@dimen/shoegaze_notification_submenu_icon_size</item>
+        <item name="android:background">@color/submenu_background_color</item>
+    </style>
 </resources>

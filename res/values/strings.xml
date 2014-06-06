@@ -15,6 +15,9 @@
 	<string name="options_auto_flash">Flash:</string>
     <string name="options_light_sensing_mode">Auto:</string>
     
+    <string name="shoegaze_notification_submenu_camera_icon_desc">Camera Swap</string>
+    <string name="shoegaze_notification_submenu_flash_icon_desc">Flash</string>
+    
     <string name="settings_group_settings">Settings</string>
     <string name="settings_group_general">General</string>
     <string name="settings_onboot_title">Start on Boot</string>
@@ -68,6 +71,6 @@
     <string name="extra_app_state">com.kformeck.shoegaze.APP_STATE</string>
     <string name="extra_alpha">com.kformeck.shoegaze.action.SHOEGAZE_EXTRA_ALPHA</string>
     <string name="extra_lsm">com.kformeck.shoegaze.action.SHOEGAZE_EXTRA_LSM</string>
-    <string name="extra_flash_is_on">com.kformeck.shoegaze.FLASH_IS_ON</string>  
+    <string name="extra_flash_is_on">com.kformeck.shoegaze.FLASH_IS_ON</string>
     
 </resources>
