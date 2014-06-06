@@ -109,7 +109,6 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 		filter.addAction(getResources().getString(R.string.action_toggle_alpha));
 		filter.addAction(getResources().getString(R.string.action_toggle_lsm));
 		filter.addAction(getResources().getString(R.string.action_toggle_flash));
-		filter.addAction(getResources().getString(R.string.action_toggle_flash));
 		filter.addAction(getResources().getString(R.string.action_toggle_camera_mode));
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		filter.addAction(Intent.ACTION_USER_PRESENT);
