@@ -73,6 +73,7 @@
 	        android:layout_marginBottom="@dimen/options_view_tb_margin"
 	        android:layout_row="1"
 	        android:visibility="visible"
+	        android:maxHeight="4dp"
 	        android:max="100"/>
 	</GridLayout>
 	

@@ -62,8 +62,12 @@ public final class R {
         public static final int scrollbar_thumb_disabled=0x7f02000f;
         public static final int scrollbar_thumb_enabled=0x7f020010;
         public static final int scrollbar_thumb_pressed=0x7f020011;
-        public static final int user_image_filip=0x7f020012;
-        public static final int user_image_me=0x7f020013;
+        public static final int scrollbar_track=0x7f020012;
+        public static final int scrollbar_track_background=0x7f020013;
+        public static final int scrollbar_track_progress=0x7f020014;
+        public static final int scrollbar_track_progress_fill=0x7f020015;
+        public static final int user_image_filip=0x7f020016;
+        public static final int user_image_me=0x7f020017;
     }
     public static final class id {
         public static final int actionBarSwitch=0x7f0b000a;
