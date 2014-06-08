@@ -72,12 +72,10 @@ public class ShoegazeService extends Service implements FaceDetectionListener {
 				setLightSensingModeActive(intent.getExtras().getBoolean(
 						res.getString(R.string.extra_lsm)));
 			} else if (action.equals(res.getString(R.string.action_toggle_flash))) {
-				if (intent.getExtras().getBoolean(context.getResources().getString(
-						R.string.extra_flash_is_on))) {
-					toggleFlash(true);
-				} else {
-					toggleFlash(false);
-				}
+				boolean turnFlashOn = intent.getExtras().getBoolean(
+						context.getResources().getString(R.string.extra_flash_is_on));
+				toggleFlash(turnFlashOn);
+				ShoegazeNotification.getInstance().setFlashState(!turnFlashOn);
 			} else if (action.equals(res.getString(R.string.action_toggle_camera_mode))) {
 				switchCameras();
 			} else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
